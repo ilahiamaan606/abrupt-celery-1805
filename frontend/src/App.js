@@ -3,6 +3,7 @@ import Home from "./pages/home/Home";
 import Header  from "./components/Header";
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import NotFound from "./pages/notFound/NotFound";
+import Footer from "./pages/footer/Footer";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   <Route path="/appointment" Component={Appointment} />
   <Route path="*" Component={NotFound} />
   </Routes>
+  <Footer/>
   </BrowserRouter>
   
   );
