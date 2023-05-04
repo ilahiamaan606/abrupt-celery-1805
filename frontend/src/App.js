@@ -1,12 +1,20 @@
+import Appointment from "./pages/appointment/Appointment";
+import Home from "./pages/home/Home";
+import Header  from "./components/Header";
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import NotFound from "./pages/notFound/NotFound";
 
-import Todo from "./components/dummy/Todo"
-import Header from "./components/header/Header";
 
 function App() {
   return (
-    <> <Header/>
-   
-    </>
+  <BrowserRouter>
+  <Header/>
+  <Routes>
+  <Route exact path="/" Component={Home} />
+  <Route path="/appointment" Component={Appointment} />
+  <Route path="*" Component={NotFound} />
+  </Routes>
+  </BrowserRouter>
   
   );
 }
