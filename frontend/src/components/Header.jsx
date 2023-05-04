@@ -1,6 +1,9 @@
 import React from 'react'
-import {Box,Flex,Text,IconButton,Button,Stack,Collapse,Icon,Link,Popover,PopoverTrigger,PopoverContent,useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react';
+import {Box,Image, Flex,Text,IconButton,Button,Stack,Collapse,Icon,Link,Popover,PopoverTrigger,PopoverContent,useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react';
 import {HamburgerIcon,CloseIcon,ChevronDownIcon,ChevronRightIcon,} from '@chakra-ui/icons';
+import {BiMenuAltLeft} from "react-icons/bi";
+
+import logo from "../assets/images/horizonHealthLogo.png"
 function Header() {
     const { isOpen, onToggle } = useDisclosure();
 
@@ -23,52 +26,35 @@ function Header() {
             <IconButton
               onClick={onToggle}
               icon={
-                isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
+                isOpen ? <CloseIcon w={3} h={3} /> : <BiMenuAltLeft fontSize={'30px'}   h={9} />
               }
               variant={'ghost'}
               aria-label={'Toggle Navigation'}
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-            <Text
+            {/* <Text
               textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
               fontFamily={'heading'}
               color={useColorModeValue('gray.800', 'white')}>
               Logo
-            </Text>
+            </Text> */}
+            <Image src={logo} maxH="35px"  />
+
+
+
             {/* <img src="../../assets/images/horizonHealthLogo.png" alt="" /> */}
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
               <DesktopNav />
             </Flex>
           </Flex>
+
+   {/* changing navbar according to authorization*/}
+   {localStorage.getItem("user")?<UserLogined/>:<UserNotLogined/>}
+   
+
   
-          <Stack
-            flex={{ base: 1, md: 0 }}
-            justify={'flex-end'}
-            direction={'row'}
-            spacing={6}>
-            <Button
-              as={'a'}
-              fontSize={'sm'}
-              fontWeight={400}
-              variant={'link'}
-              href={'#'}>
-              Sign In
-            </Button>
-            <Button
-              as={'a'}
-              display={{ base: 'none', md: 'inline-flex' }}
-              fontSize={'sm'}
-              fontWeight={600}
-              color={'white'}
-              bg={'pink.400'}
-              href={'#'}
-              _hover={{
-                bg: 'pink.300',
-              }}>
-              Sign Up
-            </Button>
-          </Stack>
+          
         </Flex>
   
         <Collapse in={isOpen} animateOpacity>
@@ -135,12 +121,12 @@ const DesktopNav = () => {
         display={'block'}
         p={2}
         rounded={'md'}
-        _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+        _hover={{ bg: useColorModeValue('cyan.100', 'gray.100') }}>
         <Stack direction={'row'} align={'center'}>
           <Box>
             <Text
               transition={'all .3s ease'}
-              _groupHover={{ color: 'pink.400' }}
+              _groupHover={{ color: 'blue.700' }}
               fontWeight={500}>
               {label}
             </Text>
@@ -154,7 +140,7 @@ const DesktopNav = () => {
             justify={'flex-end'}
             align={'center'}
             flex={1}>
-            <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+            <Icon color={'blue.700'} w={5} h={5} as={ChevronRightIcon} />
           </Flex>
         </Stack>
       </Link>
@@ -233,44 +219,114 @@ const DesktopNav = () => {
   
   const NAV_ITEMS: Array<NavItem> = [
     {
-      label: 'Inspiration',
+      label: 'Doctor',
       children: [
         {
-          label: 'Explore Design Work',
-          subLabel: 'Trending Design to inspire you',
-          href: '#',
+          label: 'Our staffs',
+          subLabel: 'Meet our expert team',
+          href: '/ourstaffs',
         },
         {
-          label: 'New & Noteworthy',
+          label: 'Departments',
           subLabel: 'Up-and-coming Designers',
           href: '#',
         },
       ],
     },
     {
-      label: 'Find Work',
+      label: 'Appointment',
       children: [
         {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
-          href: '#',
+          label: 'Book Appointment',
+          subLabel: 'Book your appointment',
+          href: '/bookappointment',
         },
         {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
-          href: '#',
+          label: 'Appointment status',
+          subLabel: 'check your appointment status',
+          href: '/myappointments',
         },
       ],
     },
     {
-      label: 'Learn Design',
-      href: '#',
+      label: 'About',
+      href: '/about',
     },
     {
-      label: 'Hire Designers',
-      href: '#',
+      label: 'services',
+      href: '/services',
     },
   ];
+
+
+function UserNotLogined(){
+
+  return (
+
+    <Stack
+    flex={{ base: 1, md: 0 }}
+    justify={'flex-end'}
+    direction={'row'}
+    spacing={6}>
+    <Button
+      as={'a'}
+      fontSize={'sm'}
+      fontWeight={400}
+      variant={'link'}
+      href={'#'}>
+      Sign In
+    </Button>
+    <Button
+      as={'a'}
+      display={{ base: 'none', md: 'inline-flex' }}
+      fontSize={'sm'}
+      fontWeight={600}
+      color={'white'}
+      bg={'blue.700'}
+      href={'#'}
+      _hover={{
+        bg: 'blue.700',
+      }}>
+      Sign Up
+    </Button>
+  </Stack>
+
+
+
+
+  )
+}
+
+function UserLogined(){
+ return (
+  <Stack
+  flex={{ base: 1, md: 0 }}
+  justify={'flex-end'}
+  direction={'row'}
+  spacing={6}>
+
+  <Button
+    as={'a'}
+    display={{ base: 'none', md: 'inline-flex' }}
+    fontSize={'sm'}
+    fontWeight={600}
+    color={'white'}
+    bg={'blue.700'}
+    href={'#'}
+    _hover={{
+      bg: 'blue.700',
+    }}>
+    Logout
+  </Button>
+</Stack>
+ )
+}
+
+
+
+
+
+
 
 
 

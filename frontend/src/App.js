@@ -1,12 +1,16 @@
+import Appointment from "./pages/appointment/Appointment";
+import Home from "./pages/home/Home";
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
 
-import Todo from "./components/dummy/Todo"
-import Header from "./components/header/Header";
 
 function App() {
   return (
-    <> <Header/>
-   
-    </>
+  <BrowserRouter>
+  <Routes>
+  <Route path="/" Component={Home} />
+  <Route path="/appointment" Component={Appointment} />
+  </Routes>
+  </BrowserRouter>
   
   );
 }
