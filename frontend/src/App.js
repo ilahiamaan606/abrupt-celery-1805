@@ -6,6 +6,8 @@ import NotFound from "./pages/notFound/NotFound";
 import Footer from "./pages/footer/Footer";
 import Login from './pages/login_signup/Login'
 import Signup from './pages/login_signup/Signup'
+import Footer from "./pages/footer/Footer";
+
 
 
 function App() {
