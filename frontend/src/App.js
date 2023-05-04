@@ -3,8 +3,10 @@ import Home from "./pages/home/Home";
 import Header  from "./components/Header";
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import NotFound from "./pages/notFound/NotFound";
+import Footer from "./pages/footer/Footer";
 import Login from './pages/login_signup/Login'
 import Signup from './pages/login_signup/Signup'
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
   <Route path="/signup" Component={Signup}/>
   <Route path="*" Component={NotFound} />
   </Routes>
+  <Footer/>
   </BrowserRouter>
   
   );
