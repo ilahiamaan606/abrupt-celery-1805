@@ -4,6 +4,8 @@ import Header  from "./components/Header";
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import NotFound from "./pages/notFound/NotFound";
 import Footer from "./pages/footer/Footer";
+import Login from './pages/login_signup/Login'
+import Signup from './pages/login_signup/Signup'
 
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
   <Routes>
   <Route exact path="/" Component={Home} />
   <Route path="/appointment" Component={Appointment} />
+  <Route exact path="/login" Component={Login} />
+  <Route path="/signup" Component={Signup}/>
   <Route path="*" Component={NotFound} />
   </Routes>
   <Footer/>
