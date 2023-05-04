@@ -11,3 +11,14 @@ font-family: 'Roboto', sans-serif; */
     margin: 5px;
     font-size: large;
 }
+.HorizonHealthLogo{
+    cursor:  pointer;
+}
+
+
+
+@media only screen and   (min-width:1px) and (max-width:600px) {
+   .doctor_card{
+    width: 90vw!important;
+   }
+}

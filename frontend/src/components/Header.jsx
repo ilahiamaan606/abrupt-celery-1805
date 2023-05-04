@@ -3,11 +3,11 @@ import {Box,Image,Avatar,MenuButton,MenuList,MenuItem,Menu,MenuDivider, AvatarBa
 import {HamburgerIcon,CloseIcon,ChevronDownIcon,ChevronRightIcon,} from '@chakra-ui/icons';
 import {BiMenuAltLeft} from "react-icons/bi";
 import { MdLogout,MdAccountCircle,MdAddTask,MdLogin } from "react-icons/md";
-
+import {useNavigate} from "react-router-dom"
 import logo from "../assets/images/horizonHealthLogo.png"
 function Header() {
     const { isOpen, onToggle } = useDisclosure();
-
+    const navigate = useNavigate();
     return (
       <Box>
         <Flex
@@ -40,7 +40,7 @@ function Header() {
               color={useColorModeValue('gray.800', 'white')}>
               Logo
             </Text> */}
-            <Image src={logo} maxH="35px"  />
+            <Image onClick={()=>{navigate("/")}} className='HorizonHealthLogo' src={logo} maxH="35px"  />
 
 
 

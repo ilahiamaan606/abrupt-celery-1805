@@ -56,7 +56,7 @@
             <Stack spacing={6}>
               <Box>
             {/* logo here */}
-              <Image h={"55px"}  src={ Logo1} alt='Horizon Health Care' />
+              <Image className='HorizonHealthLogo' h={"55px"}  src={ Logo1} alt='Horizon Health Care' />
               
               </Box>
               <Text fontSize={'sm'}>
