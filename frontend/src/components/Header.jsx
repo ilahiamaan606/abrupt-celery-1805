@@ -1,7 +1,8 @@
 import React from 'react'
-import {Box,Image,Avatar, AvatarBadge, Flex,Text,IconButton,Button,Stack,Collapse,Icon,Link,Popover,PopoverTrigger,PopoverContent,useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react';
+import {Box,Image,Avatar,MenuButton,MenuList,MenuItem,Menu,MenuDivider, AvatarBadge, Flex,Text,IconButton,Button,Stack,Collapse,Icon,Link,Popover,PopoverTrigger,PopoverContent,useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react';
 import {HamburgerIcon,CloseIcon,ChevronDownIcon,ChevronRightIcon,} from '@chakra-ui/icons';
 import {BiMenuAltLeft} from "react-icons/bi";
+import { MdLogout,MdAccountCircle,MdAddTask,MdLogin } from "react-icons/md";
 
 import logo from "../assets/images/horizonHealthLogo.png"
 function Header() {
@@ -274,7 +275,7 @@ function UserNotLogined(){
       fontWeight={400}
       variant={'link'}
       href={'#'}>
-      Sign In
+      Log In
     </Button>
     <Button
       as={'a'}
@@ -287,7 +288,7 @@ function UserNotLogined(){
       _hover={{
         bg: 'blue.700',
       }}>
-      Sign Up
+      Register
     </Button>
   </Stack>
 
@@ -305,20 +306,54 @@ function UserLogined(){
   direction={'row'}
   spacing={6}>
 
-  <Button
-    as={'a'}
-    display={{ base: 'none', md: 'inline-flex' }}
-    fontSize={'sm'}
-    fontWeight={600}
-    color={'white'}
-    bg={'blue.700'}
-    href={'#'}
-    _hover={{
-      bg: 'blue.700',
-    }}>
-    Logout
-  </Button>
-</Stack>
+<Menu>
+               <MenuButton
+                as={Button}
+                rounded={'full'}
+                variant={'link'}
+                cursor={'pointer'}
+                minW={0}>
+                <Avatar
+                  size={'sm'}
+                  src={
+                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                  }
+                />
+              </MenuButton>
+              <MenuList>
+                
+                <MenuItem> <MdAddTask  className='nav_icons' /> create new Account</MenuItem>
+                <MenuItem> <MdLogin className='nav_icons'  /> Login with another account</MenuItem>
+                <MenuDivider   />
+                <MenuItem> <MdLogout className='nav_icons'  /> Logout</MenuItem>
+              </MenuList>
+              
+             </Menu> 
+             <Button
+      as={'a'}
+      display={{ base: 'none', md: 'inline-flex' }}
+      fontSize={'sm'}
+      fontWeight={600}
+      color={'white'}
+      bg={'blue.700'}
+      href={'#'}
+      _hover={{
+        bg: 'blue.700',
+      }}>
+      Log Out
+    </Button>
+
+  
+
+
+
+ </Stack>
+
+
+
+
+
+
  )
 }
 
