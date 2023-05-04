@@ -36,7 +36,7 @@ function Header() {
               color={useColorModeValue('gray.800', 'white')}>
               Logo
             </Text>
-  
+            {/* <img src="../../assets/images/horizonHealthLogo.png" alt="" /> */}
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
               <DesktopNav />
             </Flex>
