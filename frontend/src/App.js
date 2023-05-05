@@ -13,9 +13,11 @@ function App() {
   <Header/>
   <Routes>
   <Route exact path="/" Component={Home} />
+
   <Route path="/appointment" Component={Appointment} />
   <Route path="/login" Component={Login} />
   <Route path="/signup" Component={Signup} />
+
   <Route path="*" Component={NotFound} />
   </Routes>
   <Footer/>
