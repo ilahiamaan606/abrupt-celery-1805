@@ -12,7 +12,7 @@ function App() {
   <Header/>
   <Routes>
   <Route exact path="/" Component={Home} />
-  <Route path="/appointment" Component={Appointment} />
+  <Route path="/bookappointment" Component={Appointment} />
   <Route path="*" Component={NotFound} />
   </Routes>
   <Footer/>

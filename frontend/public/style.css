@@ -22,3 +22,22 @@ font-family: 'Roboto', sans-serif; */
     width: 90vw!important;
    }
 }
+
+@media only screen and (max-width:900px){
+    .onlyForDesktop{
+        /* display:  none !important; */
+    }
+    .appointmentForm{
+        width: 90% !important;
+        /* background-color: aqua !important; */
+    }
+    body{
+        /* background-color: black !important; */
+    }
+    .appointmentContainer{
+        justify-content: center !important;
+        /* background-color: rgb(110, 6, 88) !important; */
+    }
+   
+
+}
