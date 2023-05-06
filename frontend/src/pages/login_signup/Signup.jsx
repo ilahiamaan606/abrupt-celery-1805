@@ -1,6 +1,8 @@
 import React ,{useState,useEffect} from 'react'
 import style from './Signup.module.css';
 import signup_gif from './opt2.gif'
+import Header from '../../components/Header';
+import Footer from '../footer/Footer';
 function Signup() {
   let [name,setName] = useState("");
   let [email,setEmail] = useState("");
@@ -55,6 +57,9 @@ function Signup() {
     setEmail("");
     setPassword("");
     setRole("");
+    if(res=="Signup Succesfull"){
+      window.location.href="/login"
+    }
     })
     .catch((err)=>console.log(err))
 
@@ -71,6 +76,7 @@ function Signup() {
 
   return (
     <>
+    <Header/>
     <div className={style.container}>
       {flag? <div className="d-flex justify-content-center align-items-center container">
         <div className=" py-5 px-3">
@@ -152,6 +158,7 @@ function Signup() {
         <img src={signup_gif} alt="signup_gif" />
       </div>
     </div>
+    <Footer/>
     </>
   )
 }

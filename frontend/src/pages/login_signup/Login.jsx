@@ -1,6 +1,9 @@
 import React ,{useState,useEffect}from 'react'
 import loginGif from "./opt1.gif"
 import styles from './Login.module.css'
+import Header from '../../components/Header';
+import Footer from '../footer/Footer';
+import { Navigate } from "react-router-dom";
 function Login() {
 
   let [email,setEmail] = useState("");
@@ -34,6 +37,9 @@ function Login() {
     alert(res);
     setEmail("");
     setPassword("");
+    if(res=="Login Succesfull"){
+      window.location.href="/"
+    }
     })
     .catch((err)=>console.log(err))
     
@@ -41,6 +47,8 @@ function Login() {
 
 
   return (
+    <>
+    <Header/>
     <div>
         <div className={styles.container}>
         <div>
@@ -70,6 +78,8 @@ function Login() {
         </div>
     </div>
     </div>
+    <Footer/>
+    </>
   )
 }
 
