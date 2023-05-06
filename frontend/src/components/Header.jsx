@@ -284,7 +284,7 @@ function UserNotLogined(){
       fontWeight={600}
       color={'white'}
       bg={'blue.700'}
-      href={'#'}
+      href={'/signup'}
       _hover={{
         bg: 'blue.700',
       }}>
@@ -322,7 +322,7 @@ function UserLogined(){
               </MenuButton>
               <MenuList>
                 
-                <MenuItem> <Link href='/register' > <MdAddTask  className='nav_icons' /> create new Account</Link></MenuItem>
+                <MenuItem> <Link href='/signup' > <MdAddTask  className='nav_icons' /> create new Account</Link></MenuItem>
                 <MenuItem>  <Link href='/login' ><MdLogin className='nav_icons'  /> Login with another account</Link></MenuItem>
                 <MenuDivider   />
                 <MenuItem> <MdLogout className='nav_icons'  /> Logout</MenuItem>
