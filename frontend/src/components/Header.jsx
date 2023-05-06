@@ -1,6 +1,6 @@
 import React from 'react'
 import {Box,Image,Avatar,MenuButton,MenuList,MenuItem,Menu,MenuDivider, AvatarBadge, Flex,Text,IconButton,Button,Stack,Collapse,Icon,Link,Popover,PopoverTrigger,PopoverContent,useColorModeValue,useBreakpointValue,useDisclosure,} from '@chakra-ui/react';
-import {HamburgerIcon,CloseIcon,ChevronDownIcon,ChevronRightIcon,} from '@chakra-ui/icons';
+import {HamburgerIcon,CloseIcon,ChevronDownIcon,ChevronRightIcon} from '@chakra-ui/icons';
 import {BiMenuAltLeft} from "react-icons/bi";
 import { MdLogout,MdAccountCircle,MdAddTask,MdLogin } from "react-icons/md";
 import {useNavigate} from "react-router-dom"
@@ -230,7 +230,7 @@ const DesktopNav = () => {
         {
           label: 'Departments',
           subLabel: 'Up-and-coming Designers',
-          href: '#',
+          href: '/departments',
         },
       ],
     },
@@ -284,7 +284,7 @@ function UserNotLogined(){
       fontWeight={600}
       color={'white'}
       bg={'blue.700'}
-      href={'#'}
+      href={'/signup'}
       _hover={{
         bg: 'blue.700',
       }}>
@@ -322,8 +322,8 @@ function UserLogined(){
               </MenuButton>
               <MenuList>
                 
-              <Link href='/register' ><MenuItem><MdAddTask  className='nav_icons' /> create new Account</MenuItem></Link>
-              <Link href='/login' >  <MenuItem> <MdLogin className='nav_icons'  /> Login with another account</MenuItem></Link>
+                <MenuItem> <Link href='/signup' > <MdAddTask  className='nav_icons' /> create new Account</Link></MenuItem>
+                <MenuItem>  <Link href='/login' ><MdLogin className='nav_icons'  /> Login with another account</Link></MenuItem>
                 <MenuDivider   />
                 <MenuItem> <MdLogout className='nav_icons'  /> Logout</MenuItem>
               </MenuList>
