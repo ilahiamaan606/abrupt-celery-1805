@@ -322,8 +322,8 @@ function UserLogined(){
               </MenuButton>
               <MenuList>
                 
-              <Link href='/register' ><MenuItem><MdAddTask  className='nav_icons' /> create new Account</MenuItem></Link>
-              <Link href='/login' >  <MenuItem> <MdLogin className='nav_icons'  /> Login with another account</MenuItem></Link>
+                <MenuItem> <MdAddTask  className='nav_icons' /> create new Account</MenuItem>
+                <MenuItem> <MdLogin className='nav_icons'  /> Login with another account</MenuItem>
                 <MenuDivider   />
                 <MenuItem> <MdLogout className='nav_icons'  /> Logout</MenuItem>
               </MenuList>
