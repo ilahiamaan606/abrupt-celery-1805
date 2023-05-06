@@ -1,21 +1,23 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const {users} = require("./routes/user_routes");
-const {seq} = require("./config/db");
+const { users } = require("./routes/user_routes");
+const { ap } = require("./routes/all_route")
+const { seq } = require("./config/db");
 const cookieParser = require('cookie-parser')
 require("dotenv").config();
 
 
-app.get("/",(req,res)=>{
+app.get("/", (req, res) => {
     res.json("Welcome to Hospital Appointment Booking Backend Side")
 })
 
 
-app.use(cors({origin:"*"}));
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(cookieParser());
-app.use("/users",users);
+app.use("/users", users);
+app.use("/ap", ap);
 
 
 
