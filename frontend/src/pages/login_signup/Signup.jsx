@@ -6,7 +6,9 @@ function Signup() {
   let [email,setEmail] = useState("");
   let [password,setPassword] = useState("");
   let [role,setRole] = useState("");
-
+  let [flag,setFlag] = useState(false);
+  let [otp,setOtp] = useState(0);
+  let [generated_otp,setGenerated_otp] = useState(0);
   let name_change = (event)=>{
     setName(event.target.value);
   }
@@ -23,26 +25,65 @@ function Signup() {
     setRole(event.target.value);
   }
 
+  let otp_entered = (event)=>{
+    setOtp(event.target.value);
+  }
+
   let signup_submit=(e)=>{
     e.preventDefault();
+    if(generated_otp!=otp){
+      alert("Incorrect Otp");
+      return;
+    } 
     let obj = {};
     obj.name = name;
     obj.email = email;
     obj.password = password;
     obj.role = role;
-    console.log(obj);
+    fetch("http://localhost:4500/users/signup",{
+        method:"POST",
+       headers:{
+        'Content-type':'Application/json'
+       },
+       body:
+        JSON.stringify(obj)
+    })
+    .then((res)=>res.json())
+    .then((res)=>{console.log(res);
+    alert(res);
     setName("");
     setEmail("");
     setPassword("");
     setRole("");
+    })
+    .catch((err)=>console.log(err))
+
+  }
+
+
+  let verify_email = (e)=>{
+    e.preventDefault();
+    let otp1 = Math.floor(Math.random() * (9999 - 1000) + 1000);
+    setGenerated_otp(otp1);
+    alert(otp1);
+    setFlag(true)
   }
 
   return (
     <>
     <div className={style.container}>
-      <div>
+      {flag? <div className="d-flex justify-content-center align-items-center container">
+        <div className=" py-5 px-3">
+            <h5 className="m-0">Email Verification</h5><span className="mobile-text">Enter the code we just send on your <b className="text-danger">Email-ID</b></span>
+            <div className="d-flex flex-row mt-5">
+                <input type="text" className="form-control" autofocus="" onChange={otp_entered}/>
+                <button type="button" style={{marginLeft:"3%"}} className="btn btn-info" onClick={signup_submit}>Send</button>
+            </div>
+            <div className="text-center mt-5"><span className="d-block mobile-text">Don't receive the code?</span><span className="font-weight-bold text-danger cursor">Resend</span></div>
+        </div>
+    </div>:<div>
       <h1>Signup to make an Account</h1>
-      <form className="row g-3 needs-validation" novalidate onSubmit={signup_submit}>
+      <form className="row g-3 needs-validation" novalidate onSubmit={verify_email}>
         {/* *************************name ************************ */}
         <div className="col-md-9">
           <label htmlFor="validationCustom01" className="form-label">Name</label>
@@ -103,7 +144,7 @@ function Signup() {
         <button className="btn btn-primary" type="submit">Submit form</button>
       </div>
 </form>
-      </div>
+      </div>}
 
 
 

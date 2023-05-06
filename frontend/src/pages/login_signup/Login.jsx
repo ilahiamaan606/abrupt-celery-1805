@@ -21,9 +21,21 @@ function Login() {
     let obj = {};
     obj.email = email;
     obj.password = password;
-    console.log(obj);
+    fetch("http://localhost:4500/users/login",{
+        method:"POST",
+       headers:{
+        'Content-type':'Application/json'
+       },
+       body:
+        JSON.stringify(obj)
+    })
+    .then((res)=>res.json())
+    .then((res)=>{console.log(res);
+    alert(res);
     setEmail("");
     setPassword("");
+    })
+    .catch((err)=>console.log(err))
     
   }
 
