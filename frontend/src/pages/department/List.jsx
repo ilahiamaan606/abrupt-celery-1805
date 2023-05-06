@@ -19,6 +19,10 @@ let deparmentArr = [
     icon:FaTeeth,
     description:"A dentist, also known as a dental surgeon, is a health care professional who specializes in dentistry (the diagnosis, prevention, management, and treatment of diseases and conditions of the oral cavity and other aspects of the craniofacial complex including the temporomandibular joint).",
     },
+    {heading:"DEPARTMENT OF ORAL & MAXILLOFACIAL SURGERY.",
+    icon:FaTeeth,
+    description:"A dentist, also known as a dental surgeon, is a health care professional who specializes in dentistry (the diagnosis, prevention, management, and treatment of diseases and conditions of the oral cavity and other aspects of the craniofacial complex including the temporomandibular joint).",
+    },
     {heading:"ENT Department",
     icon:FaEye,
     description:"A doctor who has special training in diagnosing and treating diseases of the ear, nose, and throat. Also called otolaryngologist.",
@@ -44,6 +48,8 @@ function List() {
 
       <Container maxW={'5xl'} mt={12}>
         <Flex flexWrap="wrap" gridGap={6} justify="center">
+
+              
           {
            deparmentArr.map((item)=>{
             return   <Card
@@ -60,47 +66,8 @@ function List() {
 
 
           }
-          <Card
-            heading={'Heading'}
-            icon={<Icon as={FcAssistant} w={10} h={10} />}
-            description={
-              'Lorem ipsum dolor sit amet catetur, adipisicing elit.'
-            }
-            href={'#'}
-          />
-          <Card
-            heading={'Heading'}
-            icon={<Icon as={FcCollaboration} w={10} h={10} />}
-            description={
-              'Lorem ipsum dolor sit amet catetur, adipisicing elit.'
-            }
-            href={'#'}
-          />
-          <Card
-            heading={'Heading'}
-            icon={<Icon as={FcDonate} w={10} h={10} />}
-            description={
-              'Lorem ipsum dolor sit amet catetur, adipisicing elit.'
-            }
-            href={'#'}
-          />
-          <Card
-            heading={'Heading'}
-            icon={<Icon as={FcManager} w={10} h={10} />}
-            description={
-              'Lorem ipsum dolor sit amet catetur, adipisicing elit.'
-            }
-            href={'#'}
-          />
-          <Card
-            heading={'Headie45yng'}
-            icon={<Icon as={FcAbout} w={10} h={10} />}
-            description={
-              'Lorem ipsum dolor sit amet catetur, adipisicing elit.'
-            }
-            href={'/about'}
-          />
-
+         
+          
 
 
 

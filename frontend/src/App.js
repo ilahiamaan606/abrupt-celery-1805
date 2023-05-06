@@ -17,7 +17,7 @@ function App() {
   <Route path="/bookappointment" Component={Appointment} />
   <Route path="/departments" Component={Department} />
   <Route path="/login" Component={Login} />
-  <Route path="/signup" Component={Signup} />
+  <Route path="/register" Component={Signup} />
 
   <Route path="*" Component={NotFound} />
   </Routes>
