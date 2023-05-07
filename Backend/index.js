@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const { users } = require("./routes/user_routes");
 const { ap } = require("./routes/all_route")
+const {doc} = require("./routes/doctor_signup_route");
 const { seq } = require("./config/db");
 const cookieParser = require('cookie-parser')
 require("dotenv").config();
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/users", users);
 app.use("/ap", ap);
+app.use("/doc",doc);
 
 
 

@@ -1,10 +1,14 @@
 import React ,{useState,useEffect}from 'react'
 import loginGif from "./opt1.gif"
 import styles from './Login.module.css'
+import Header from '../../components/Header'
+import Footer from '../footer/Footer'
 function Login() {
 
+  const toastLiveExample = document.getElementById('liveToast')
   let [email,setEmail] = useState("");
   let [password,setPassword] = useState("");
+  let [role,setRole] = useState("");
 
   let email_change = (event)=>{
     setEmail(event.target.value);
@@ -14,6 +18,10 @@ function Login() {
     setPassword(event.target.value);
   }
 
+  let role_change=(event)=>{
+    setRole(event.target.value);
+  }
+
 
 
   let submit = (e)=>{
@@ -21,7 +29,14 @@ function Login() {
     let obj = {};
     obj.email = email;
     obj.password = password;
-    fetch("http://localhost:4500/users/login",{
+    let link = '';
+    if(role=="Doctor"){
+      link = "doc"
+    }
+    else {
+      link = 'users'
+    }
+    fetch(`http://localhost:4500/${link}/login`,{
         method:"POST",
        headers:{
         'Content-type':'Application/json'
@@ -30,8 +45,18 @@ function Login() {
         JSON.stringify(obj)
     })
     .then((res)=>res.json())
-    .then((res)=>{console.log(res);
-    alert(res);
+    .then((res)=>{console.log(res.data);
+    sessionStorage.setItem("key", (res.token));
+    sessionStorage.setItem("data", JSON.stringify(res.data));
+    alert(res.msg);
+
+
+    toastLiveExample.show()
+
+
+    if(res.msg=="Login Succesfull"){
+      window.location.href="/";
+    }
     setEmail("");
     setPassword("");
     })
@@ -41,6 +66,28 @@ function Login() {
 
 
   return (
+    <>
+    <Header/>
+
+      <div className="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" className="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div className="toast-header">
+      <img src="..." className="rounded me-2" alt="..."/>
+      <strong className="me-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div className="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
     <div>
         <div className={styles.container}>
         <div>
@@ -56,6 +103,24 @@ function Login() {
                   <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                   <input type="password" className="form-control" id="password" value={password} onChange={password_change} required/>
                 </div>
+                  
+
+                <div className="col-md-6 ">
+                  <label htmlFor="validationCustom04" className="form-label">Role</label>
+                  <select className="form-select" id="validationCustom04" value={role} onChange={role_change} required>
+                    <option selected disabled value="">Choose...</option>
+                    <option>Doctor</option>
+                    <option>Patient</option>
+                  </select>
+                  <div className="invalid-feedback">
+                    Please select a valid Role.
+                  </div>
+                </div>
+
+
+
+
+
                 <div className="mb-3 form-check">
                   <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
                   <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
@@ -70,6 +135,8 @@ function Login() {
         </div>
     </div>
     </div>
+    <Footer/>
+    </>
   )
 }
 
