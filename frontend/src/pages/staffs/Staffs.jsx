@@ -4,6 +4,15 @@ import Footer from '../footer/Footer'
 import Card from '../../components/Card'
 import {Heading,Text,Stack,Select,Button} from "@chakra-ui/react"
 function Staffs() {
+
+    let doctors = [
+      {name:"Dr alexander",department:"cardiology",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},
+      {name:"John Doe",department:"phsycotherappy",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},
+      {name:"Kaalidas",department:"ENT",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},
+      {name:"Yamuna",department:"Dermatology",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},
+    ]
+
+
     sessionStorage.setItem("department","anthropology")
     sessionStorage.removeItem("department")
   return (
@@ -21,8 +30,8 @@ function Staffs() {
     
     
       
-      {Array(5).fill(" ").map((item,i)=>{
-        return <Card/>
+      {doctors.map((item,i)=>{
+        return <Card key={i} doctor={item} />
       })}
       
       </Stack>
