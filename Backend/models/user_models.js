@@ -3,14 +3,12 @@ const {seq} = require("../config/db");
 const { Model, DataTypes } = require("sequelize");
 
 
-const doctors = seq.define("doctors", {
+const user = seq.define("user", {
     name: DataTypes.STRING,
     role: DataTypes.STRING,
     email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    department:DataTypes.STRING,
-    description:DataTypes.STRING,
+    password: DataTypes.STRING
 })
 
 
-module.exports = {doctors};
+module.exports = {user};

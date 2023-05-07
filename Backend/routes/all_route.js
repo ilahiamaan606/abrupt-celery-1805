@@ -1,22 +1,20 @@
 const express = require("express");
 const ap = express.Router();
 
-const { pateint } = require("../models/pateint_models");
+const { user } = require("../models/user_models");
 const { slot } = require("../models/slot_model");
 const { doctor } = require("../models/doctor_model");
-const { authenticate } = require("../middleware/authenticate.js")
-const { authent } = require("../middleware/authent")
-ap.use(authenticate)
-//all users     admin 
-ap.get(`/users/`, authent(["admin"]), async (req, res) => {
+
+
+
+
+ap.get("/users", async (req, res) => {
     try {
-        const datapateint = await pateint.findAll();
-        // const datadoctor = await doctor.findAll();
+        const data = await user.findAll();
         res.status(200).json({
             isError: false,
             msg: "All Users",
-            datapateint
-            // datadoctor
+            data
         })
     }
     catch (err) {
@@ -27,11 +25,11 @@ ap.get(`/users/`, authent(["admin"]), async (req, res) => {
         })
     }
 })
-//user slots booking     users
+
 ap.post("/slotbook/:userID", async (req, res) => {
     try {
-        const { pateintID, pateintname, appointmentDate, appointmentTime, doctorID, status } = req.body;
-        let data = await slot.create({ pateintID, pateintname, appointmentDate, appointmentTime, doctorID, status });
+        const { pateintID, pateintname, appointmentDate, appointmentTime, status } = req.body;
+        let data = await slot.create({ pateintID, pateintname, appointmentDate, appointmentTime, status });
         res.status(200).json({
             isError: false,
             msg: "Appointment Created Successfully!",
@@ -49,14 +47,10 @@ ap.post("/slotbook/:userID", async (req, res) => {
         })
     }
 })
-//slots list wrt doctor id         doctor
-ap.get("/doctor/:id", async (req, res) => {
+
+ap.get("/doctor", async (req, res) => {
     try {
-        const data = await slot.findAll({
-            where: {
-                doctorID: req.params.id
-            }
-        });
+        const data = await doctor.findAll();
         res.status(200).json({
             isError: false,
             msg: "All Doctors",
@@ -72,12 +66,13 @@ ap.get("/doctor/:id", async (req, res) => {
         })
     }
 })
-//slot updation|user slot updation     doctor/pateint
-ap.put("/status/:id", async (req, res) => {
 
-    let { status } = req.body;
+ap.post("/doctor/:id", async (req, res) => {
+
+    let { userID, doctorid, status } = req.body;
     try {
-        const data = await slot.upsert({ id: req.params.id, status })
+        const data = await slot.findAll({ pateintID: userID, doctorID: doctorid })
+        data.status = status;
         res.status(200).json({
             isError: false,
             msg: "Status Updated Successfully",
@@ -93,30 +88,5 @@ ap.put("/status/:id", async (req, res) => {
         })
     }
 })
-// appoinment status             pateint
-ap.get("/userstatus/:id", async (req, res) => {
-    try {
-        let data = await slot.findAll({ where: { pateintID: req.params.id } })
-        res.status(200).json({
-            isError: false,
-            msg: "Status Updated Successfully",
-            data
-        })
-    }
-    catch (err) {
-        res.status(400).json({
-            isError: true,
-            msg: "Please Try Again!",
-            err
-        })
-    }
-})
-
-
-//middleware update
-
-
-
-
 
 module.exports = { ap };
