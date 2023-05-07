@@ -9,6 +9,7 @@ import Signup from './pages/login_signup/Signup';
 import Department from "./pages/department/Department";
 import Staffs from "./pages/staffs/Staffs";
 import About from "./pages/About/About";
+import Myappointments from "./pages/myAppointments/Myappointments";
 import adminlogin from "./pages/admin/adminlogin";
 import AdminDashPage from "./pages/admin/AdminDashPage";
 function App() {
@@ -22,6 +23,7 @@ function App() {
   <Route path="/departments" Component={Department} />
   <Route path="/about" Component={About} />
   <Route path="/ourstaffs" Component={Staffs} />
+  <Route path="/myappointments" Component={Myappointments} />
   <Route path="/login" Component={Login} />
   <Route path="/signup" Component={Signup} />
   <Route path="/adminlogin" Component={adminlogin} />
