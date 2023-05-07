@@ -2,7 +2,7 @@ const express = require("express");
 const admin = express.Router();
 require('dotenv').config();
 const { pateint } = require("../models/pateint_models");
-const {doctor} = require("../models/doctor");
+const {doctor} = require("../models/doctor_model");
 
 //admin login page
 const Admin = async (req, res) => {
