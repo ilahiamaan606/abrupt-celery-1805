@@ -20,7 +20,8 @@ app.use(cookieParser());
 app.use("/users", users);
 app.use("/ap", ap);
 app.use("/doc",doc);
-
+app.use("/admin", admin);
+app.use("/adminLogin", Admin);
 
 
 seq.sync().then(() => {
