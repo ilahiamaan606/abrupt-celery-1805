@@ -4,8 +4,7 @@ const users = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer")
-users.post("/signup",async(req,res)=>{
-    let {name,email,password,role,department} = req.body;
+
      
     try {
         const [results, metadata] = await user.sequelize.query(`SELECT * FROM users WHERE email = '${email}'`);
