@@ -229,7 +229,7 @@ const DesktopNav = () => {
         },
         {
           label: 'Departments',
-          subLabel: 'Up-and-coming Designers',
+          subLabel: 'our various departments',
           href: '/departments',
         },
       ],

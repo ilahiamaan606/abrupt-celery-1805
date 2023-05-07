@@ -2,7 +2,12 @@ import {useState,useEffect} from 'react'
 import { Text,VStack,Textarea,Button, Stack,Input, Heading, FormLabel,FormControl,Avatar, Select } from '@chakra-ui/react'
 import { object } from 'yup';
 function AppointmentForm() {
-const initialValues ={date:"",doctor:"",department:"",message:""}
+//checking for doctor details in session storage
+let doctorSelected = false;
+if(sessionStorage.getItem("doctor")){doctorSelected=true}
+let doctor = JSON.parse( sessionStorage.getItem("doctor")).name || "";
+let department = JSON.parse( sessionStorage.getItem("doctor")).department || "";
+const initialValues ={date:"",doctor,department,message:""}
 const [formValue,setFormValue]=useState(initialValues);
 const [isSubmit,setIsSubmit]=useState(false);
 const [error,setError]=useState({});
@@ -18,7 +23,8 @@ if(isSubmit && Object.keys(error).length==0){
 function handleSubmit(e){
 e.preventDefault();
 setIsSubmit(true);
-setError(validate(formValue))
+setError(validate(formValue));
+console.log(error)
 
 }
 function handleChange(e){
@@ -52,7 +58,7 @@ function validate(obj){
     <FormControl>
       <FormLabel>Select Department </FormLabel>
       <Select name='department' onChange={handleChange}  >
-       
+      {doctorSelected?<option>{JSON.parse(sessionStorage.getItem("doctor")).department}</option>:<option>select a doctor</option>}
         <option>cardiology</option>
         <option>physiology</option>
         <option>phycotherapy</option>
@@ -61,7 +67,8 @@ function validate(obj){
     </FormControl>
     <FormControl>
       <FormLabel>Select Doctor </FormLabel>
-      <Select  value={formValue.doctor}  name='doctor' onChange={handleChange} placeholder='select doctor' >
+      <Select   name='doctor' onChange={handleChange}  >
+        {doctorSelected?<option>{JSON.parse(sessionStorage.getItem("doctor")).name}</option>:<option>select a doctor</option>}
         <option>andnuu</option>
         <option>alexander</option>
         <option>psdf</option>

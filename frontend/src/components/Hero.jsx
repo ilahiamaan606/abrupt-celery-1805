@@ -8,8 +8,9 @@ import {
     Icon,
     IconProps,
   } from '@chakra-ui/react';
-  
+  import {useNavigate} from "react-router-dom";
   export default function Hero() {
+    const navigate = useNavigate();
     return (
       <Container maxW={'5xl'}>
         <Stack
@@ -32,6 +33,7 @@ import {
           </Text>
           <Stack spacing={6} direction={'row'}>
             <Button
+              onClick={()=>{navigate("/ourstaffs")}}
               align="center"
               textAlign={'center'}
               rounded={'full'}
