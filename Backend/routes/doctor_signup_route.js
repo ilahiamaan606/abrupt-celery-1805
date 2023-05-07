@@ -1,22 +1,21 @@
-const { pateint } = require("../models/pateint_models");
+const {doctors} = require("../models/doctor_signup_model");
 const express = require("express");
-const users = express.Router();
+const doc = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer")
-
-users.post("/signup", async (req, res) => {
-    let { name, email, password, role, department } = req.body;
-
+doc.post("/signup",async(req,res)=>{
+    let {name,email,password,role,department} = req.body;
+     
     try {
-        const [results, metadata] = await user.sequelize.query(`SELECT * FROM users WHERE email = '${email}'`);
-        if (results.length != 0) {
-            res.json("Email Already Signed Up");
+        const [results, metadata] = await doctors.sequelize.query(`SELECT * FROM doctors WHERE email = '${email}'`);
+        if(results.length!=0){
+           res.json("Email Already Signed Up");
         }
         else {
-            bcrypt.hash(password, Number(process.env.salt), async (err, hash) => {
-                if (hash) {
-                    await user.create({ name, email, role, password: hash, department })
+            bcrypt.hash(password,Number(process.env.salt),async(err,hash)=>{
+                if(hash){
+                    await doctors.create({name,email,role,password:hash,department})
                     res.json("Signup Succesfull");
                 }
                 else {
@@ -27,28 +26,26 @@ users.post("/signup", async (req, res) => {
     } catch (error) {
         res.json("ERROR");
     }
-
+    
 })
 
 
 
 
-users.post("/login", async (req, res) => {
-    let { email, password } = req.body;
+doc.post("/login",async(req,res)=>{
+    let {email,password} = req.body;
     try {
-        const [results, metadata] = await user.sequelize.query(`SELECT * FROM users WHERE email = '${email}'`);
-        if (results.length == 0) {
+        const [results, metadata] = await doctors.sequelize.query(`SELECT * FROM doctors WHERE email = '${email}'`);
+        if(results.length==0){
             res.json("User Not Found Signup Please");
         }
         else {
             let pass = results[0].password;
-
             bcrypt.compare(password,pass,(err,result)=>{
                 if(result){
                     let token = jwt.sign({email:email},process.env.key,{expiresIn:'24h'});
                     res.cookie("token",token);
-                    res.json({"msg":"Login Succesfull","token":token,"data":results});
-
+                    res.json({"msg":"Login Succesfull","token":token,"data":results[0]});
                 }
                 else {
                     res.json("Password Incorrect")
@@ -62,8 +59,7 @@ users.post("/login", async (req, res) => {
 
 
 
-
-users.post("/mail_verify",(req,res)=>{
+doc.post("/mail_verify",(req,res)=>{
  
     let {email,otp} = req.body;
     console.log(email,otp)
@@ -97,5 +93,4 @@ users.post("/mail_verify",(req,res)=>{
 })
 
 
-module.exports={users};
-
+module.exports={doc};

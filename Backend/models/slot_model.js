@@ -5,10 +5,10 @@ const { Model, DataTypes } = require("sequelize");
 const slot = seq.define("slot", {
     pateintID: DataTypes.INTEGER,
     pateintname: DataTypes.STRING,
-    appointmentDate: DataTypes.STRING,
-    appointmentTime: DataTypes.INTEGER,
+    appointmentDate: DataTypes.DATE,
+    appointmentTime: DataTypes.TIME,
     doctorID: DataTypes.INTEGER,
-    status: DataTypes.BOOLEAN
+    status: DataTypes.STRING
 })
 
 module.exports = { slot };

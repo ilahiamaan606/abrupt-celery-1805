@@ -1,6 +1,8 @@
 import React ,{useState,useEffect} from 'react'
 import style from './Signup.module.css';
 import signup_gif from './opt2.gif'
+import Header from '../../components/Header'
+import Footer from '../footer/Footer'
 function Signup() {
   let [name,setName] = useState("");
   let [email,setEmail] = useState("");
@@ -40,7 +42,9 @@ function Signup() {
     obj.email = email;
     obj.password = password;
     obj.role = role;
-    fetch("http://localhost:4500/users/signup",{
+    if(role=="Doctor"){
+        console.log(obj);
+        fetch("http://localhost:4500/doc/signup",{
         method:"POST",
        headers:{
         'Content-type':'Application/json'
@@ -51,26 +55,69 @@ function Signup() {
     .then((res)=>res.json())
     .then((res)=>{console.log(res);
     alert(res);
+    if(res=="Signup Succesfull"){
+      window.location.href="/login";
+    }
     setName("");
     setEmail("");
     setPassword("");
     setRole("");
     })
     .catch((err)=>console.log(err))
+    }
+    else if(role=="Patient"){
+        console.log(obj)
+        fetch("http://localhost:4500/users/signup",{
+        method:"POST",
+       headers:{
+        'Content-type':'Application/json'
+       },
+       body:
+        JSON.stringify(obj)
+    })
+    .then((res)=>res.json())
+    .then((res)=>{console.log(res);
+    alert(res);
+    if(res=="Signup Succesfull"){
+      window.location.href="/login";
+    }
+    setName("");
+    setEmail("");
+    setPassword("");
+    setRole("");
+    })
+    .catch((err)=>console.log(err))
+    }
+    
 
   }
 
 
-  let verify_email = (e)=>{
+  let verify_email = async(e)=>{
     e.preventDefault();
     let otp1 = Math.floor(Math.random() * (9999 - 1000) + 1000);
     setGenerated_otp(otp1);
-    alert(otp1);
+    let bag = "";
+    bag+=otp1;
+    let obj={};
+    obj.otp = bag;
+    obj.email = email;
     setFlag(true)
+    let response = await fetch("http://localhost:4500/users/mail_verify",{
+        method:"POST",
+       headers:{
+        'Content-type':'Application/json'
+       },
+       body:
+        JSON.stringify(obj)
+    });
+
+    
   }
 
   return (
     <>
+    <Header/>
     <div className={style.container}>
       {flag? <div className="d-flex justify-content-center align-items-center container">
         <div className=" py-5 px-3">
@@ -120,7 +167,7 @@ function Signup() {
       <div className="col-md-6 ">
         <label htmlFor="validationCustom04" className="form-label">Role</label>
         <select className="form-select" id="validationCustom04" value={role} onChange={role_change} required>
-          <option selected disabled >Choose...</option>
+          <option selected disabled value="">Choose...</option>
           <option>Doctor</option>
           <option>Patient</option>
         </select>
@@ -152,6 +199,7 @@ function Signup() {
         <img src={signup_gif} alt="signup_gif" />
       </div>
     </div>
+    <Footer/>
     </>
   )
 }
