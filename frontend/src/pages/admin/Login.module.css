@@ -1,0 +1,41 @@
+.container{
+    width: 70%;
+    margin: auto;
+    margin-top: 5%;
+    display: flex;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+}
+
+
+.container>div{
+    width: 50%;
+    margin: auto;
+}
+.container img{
+    width: 100%;
+}
+
+.container>div:nth-child(1){
+    padding: 3%;
+    border: 1px solid rgb(58, 54, 54);
+    border-radius: 20px;
+}
+
+
+@media all and (min-width:100px) and (max-width:620px) {
+    .container{
+        width: 100%;
+        margin: auto;
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .container img{
+        display: none;
+    }
+}
+
