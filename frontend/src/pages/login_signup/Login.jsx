@@ -2,7 +2,7 @@ import React ,{useState,useEffect}from 'react'
 import loginGif from "./opt1.gif"
 import styles from './Login.module.css'
 function Login() {
-
+  
   let [email,setEmail] = useState("");
   let [password,setPassword] = useState("");
 
