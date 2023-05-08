@@ -3,9 +3,10 @@ const app = express();
 const cors = require("cors");
 const { users } = require("./routes/user_routes");
 const { ap } = require("./routes/all_route")
-const {doc} = require("./routes/doctor_signup_route");
+const { doc } = require("./routes/doctor_signup_route");
 const { seq } = require("./config/db");
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const { admin, Admin } = require("./routes/adminroute");
 require("dotenv").config();
 
 
@@ -19,10 +20,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/users", users);
 app.use("/ap", ap);
-app.use("/doc",doc);
 app.use("/admin", admin);
 app.use("/adminLogin", Admin);
-
+app.use("/doc", doc);
 
 seq.sync().then(() => {
     app.listen(process.env.port, () => {

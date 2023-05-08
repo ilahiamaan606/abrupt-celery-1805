@@ -2,7 +2,7 @@ const express = require("express");
 const admin = express.Router();
 require('dotenv').config();
 const { pateint } = require("../models/pateint_models");
-const {doctor} = require("../models/doctor_model");
+const { doctor } = require("../models/doctor_signup_model");
 
 //admin login page
 const Admin = async (req, res) => {
@@ -34,20 +34,20 @@ const Admin = async (req, res) => {
 
 //getting patient information
 admin.get('/patient', async (req, res) => {
-try {
-    const data = await pateint.findAll();
-    res.send({
-        status: 200,
-        message: "All Patient",
-         data
-    })
-} catch (error) {
-    res.send({
-        status: 404,
-        message: "error while getting patient details",
-        error: error
-    })
-}
+    try {
+        const data = await pateint.findAll();
+        res.send({
+            status: 200,
+            message: "All Patient",
+            data
+        })
+    } catch (error) {
+        res.send({
+            status: 404,
+            message: "error while getting patient details",
+            error: error
+        })
+    }
 })
 
 
@@ -58,7 +58,7 @@ admin.get('/doctor', async (req, res) => {
         res.send({
             status: 200,
             message: "All Doctors",
-             data
+            data
         })
     } catch (error) {
         res.send({
@@ -67,88 +67,88 @@ admin.get('/doctor', async (req, res) => {
             error: error
         })
     }
-    })
+})
 
-    //updating Patient information
-    admin.put("/Patient_update/:id", async (req, res) => {
+//updating Patient information
+admin.put("/Patient_update/:id", async (req, res) => {
 
-        let updated = req.body;
-        try {
-            const data = await pateint.upsert({ id: req.params.id, updated :updated});
-            res.json({
-                status: 200,
-                msg: "Details Updated",
-                data
-            })
-    
-        }
-        catch (err) {
-            res.json({
-                status: 404,
-                msg: "error while updating patient details",
-                err:err
-            })
-        }
-    })
+    let updated = req.body;
+    try {
+        const data = await pateint.upsert({ id: req.params.id, updated: updated });
+        res.json({
+            status: 200,
+            msg: "Details Updated",
+            data
+        })
 
-    //updating Doctor information
-    admin.put("/Doctor_update/:id", async (req, res) => {
-        let updated = req.body;
-        try {
-            const data = await pateint.upsert({ id: req.params.id, updated :updated});
-            res.json({
-                status: 200,
-                msg: "Details Updated",
-                data
-            })
-    
-        }
-        catch (err) {
-            res.json({
-                status: 404,
-                msg: "error while updating doctor details",
-                err:err
-            })
-        }
-    })
+    }
+    catch (err) {
+        res.json({
+            status: 404,
+            msg: "error while updating patient details",
+            err: err
+        })
+    }
+})
 
-    //deleting Patient information
-    admin.delete("/Patient_delete/:id", async (req, res) => {
-        try {
-            const data = await pateint.destroy({ id: req.params.id });
-            res.json({
-                status: 200,
-                msg: "Details Deleted",
-                data
-            })
-    
-        }
-        catch (err) {
-            res.json({
-                status: 404,
-                msg: "error while deleting patient details",
-                err:err
-            })
-        }
-    })
+//updating Doctor information
+admin.put("/Doctor_update/:id", async (req, res) => {
+    let updated = req.body;
+    try {
+        const data = await pateint.upsert({ id: req.params.id, updated: updated });
+        res.json({
+            status: 200,
+            msg: "Details Updated",
+            data
+        })
 
-    //Deleting Doctor information
-    admin.delete("/Doctor_delete/:id", async (req, res) => {
-        try {
-            const data = await doctor.destroy({ id: req.params.id });
-            res.json({
-                status: 200,
-                msg: "Details Deleted",
-                data
-            })
-    
-        }
-        catch (err) {
-            res.json({
-                status: 404,
-                msg: "error while deleting doctor details",
-                err:err
-            })
-        }
-    })
-module.exports = { Admin ,admin};
+    }
+    catch (err) {
+        res.json({
+            status: 404,
+            msg: "error while updating doctor details",
+            err: err
+        })
+    }
+})
+
+//deleting Patient information
+admin.delete("/Patient_delete/:id", async (req, res) => {
+    try {
+        const data = await pateint.destroy({ id: req.params.id });
+        res.json({
+            status: 200,
+            msg: "Details Deleted",
+            data
+        })
+
+    }
+    catch (err) {
+        res.json({
+            status: 404,
+            msg: "error while deleting patient details",
+            err: err
+        })
+    }
+})
+
+//Deleting Doctor information
+admin.delete("/Doctor_delete/:id", async (req, res) => {
+    try {
+        const data = await doctor.destroy({ id: req.params.id });
+        res.json({
+            status: 200,
+            msg: "Details Deleted",
+            data
+        })
+
+    }
+    catch (err) {
+        res.json({
+            status: 404,
+            msg: "error while deleting doctor details",
+            err: err
+        })
+    }
+})
+module.exports = { Admin, admin };
