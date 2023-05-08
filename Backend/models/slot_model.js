@@ -6,9 +6,10 @@ const slot = seq.define("slot", {
     pateintID: DataTypes.INTEGER,
     pateintname: DataTypes.STRING,
     appointmentDate: DataTypes.DATE,
-    appointmentTime: DataTypes.TIME,
+    appointmentTime: DataTypes.STRING,
     doctorID: DataTypes.INTEGER,
-    status: DataTypes.STRING
+    status: DataTypes.STRING,
+    description:DataTypes.STRING
 })
 
 module.exports = { slot };

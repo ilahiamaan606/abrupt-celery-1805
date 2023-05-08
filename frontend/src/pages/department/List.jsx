@@ -1,4 +1,4 @@
-import React from 'react'
+import {useState,useEffect} from 'react'
 import {Box,Button,Container,Flex,Heading,Icon,Stack,Text,useColorModeValue,} from '@chakra-ui/react';
 import { ReactElement } from 'react';
 import {FcAbout,FcLike,FcAssistant,FcCollaboration,FcDonate,FcManager,} from 'react-icons/fc';
@@ -34,7 +34,55 @@ let deparmentArr = [
 
 ]
 
+
+
 function List() {
+
+//fetching data 
+let [doctors1,setDoctors]=useState([]);
+ const [departments,setDepartments]=useState([]);
+ 
+useEffect(()=>{
+
+
+  fetch('http://localhost:4500/ap/doctor/?role=pateint', {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      'Authorization':sessionStorage.getItem("token")
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      
+      // console.log(json.datadoctor)
+      setDoctors(json.datadoctor)
+      console.log(doctors1)
+      
+    
+    });
+   
+
+
+
+},[])
+
+//data fetching ends
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <Box p={4}>
       <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>

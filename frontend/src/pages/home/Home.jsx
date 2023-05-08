@@ -2,17 +2,38 @@ import  {useEffect,useState} from 'react'
 import Header from '../../components/Header'
 import Hero from '../../components/Hero'
 import  Card  from '../../components/Card'
-import {Flex, Heading, VStack,Button} from "@chakra-ui/react"
+import {Flex, Heading, VStack,Button, useFormControlStyles} from "@chakra-ui/react"
 import Footer from '../footer/Footer'
 
 function Home() {
 
 //attaching backend 
-// let [doctors,setDoctors]=useState([]);
-
+ let [doctors1,setDoctors]=useState([]);
+ 
 useEffect(()=>{
 
-})
+
+  fetch('http://localhost:4500/ap/doctor/?role=pateint', {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      'Authorization':sessionStorage.getItem("token")
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      
+      // console.log(json.datadoctor)
+      setDoctors(json.datadoctor)
+      console.log(doctors1)
+      
+    
+    });
+   
+
+
+
+},[])
 
 
 
@@ -21,12 +42,12 @@ useEffect(()=>{
 
 
   localStorage.setItem("user","false");
-  let doctors = [
-    {name:"Dr alexander",department:"cardiology",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},
-    {name:"John Doe",department:"phsycotherappy",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},
-    {name:"Kaalidas",department:"ENT",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},
-    {name:"Yamuna",department:"Dermatology",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},
-  ]
+  // let doctors = [
+  //   {name:"Dr alexander",department:"cardiology",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},
+  //   {name:"John Doe",department:"phsycotherappy",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},
+  //   {name:"Kaalidas",department:"ENT",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},
+  //   {name:"Yamuna",department:"Dermatology",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},
+  // ]
 
   return (
    <>
@@ -36,7 +57,7 @@ useEffect(()=>{
    <VStack py={6}  >
    <Heading  color={"blue.700"} >Our Doctors</Heading>
    <Flex  flexWrap={"wrap"} justify={"center"}  >
-    {doctors.map((doctor,i)=>{
+    {doctors1.map((doctor,i)=>{
       return <Card doctor={doctor} key={i}/>
     })}
    </Flex>

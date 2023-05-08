@@ -20,7 +20,7 @@ function Card(props) {
         {props.doctor.description}
       </Text>
       <Stack isInline align={"baseline"} justify={"space-between"} >
-      <Text fontWeight={"semibold"} fontSize={"lg"} >  ₹  {props.doctor.fee}</Text>
+      <Text fontWeight={"semibold"} fontSize={"lg"} >  ₹ 500</Text>
       {/* <Icon name='star'  color={"blue.700"}/> */}
       
      
