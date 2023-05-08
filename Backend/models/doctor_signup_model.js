@@ -1,5 +1,5 @@
 const sequelize = require("sequelize");
-const {seq} = require("../config/db");
+const { seq } = require("../config/db");
 const { Model, DataTypes } = require("sequelize");
 
 
@@ -8,9 +8,9 @@ const doctors = seq.define("doctors", {
     role: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    department:DataTypes.STRING,
-    description:DataTypes.STRING,
+    department: DataTypes.STRING,
+    description: DataTypes.STRING
 })
 
 
-module.exports = {doctors};
+module.exports = { doctors };
