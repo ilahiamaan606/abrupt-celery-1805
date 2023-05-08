@@ -51,7 +51,7 @@ function Header() {
           </Flex>
 
    {/* changing navbar according to authorization*/}
-   {localStorage.getItem("user")?<UserLogined/>:<UserNotLogined/>}
+   {sessionStorage.getItem("user")?<UserLogined/>:<UserNotLogined/> }
    
 
   
@@ -274,7 +274,7 @@ function UserNotLogined(){
       fontSize={'sm'}
       fontWeight={400}
       variant={'link'}
-      href={'#'}>
+      href={'/login'}>
       Log In
     </Button>
     <Button
@@ -324,13 +324,14 @@ function UserLogined(){
               <MenuList>
                 
                 <MenuItem> <Link href='/signup' > <MdAddTask  className='nav_icons' /> create new Account</Link></MenuItem>
-                <MenuItem>  <Link href='/login' ><MdLogin className='nav_icons'  /> Login with another account</Link></MenuItem>
+                <MenuItem>  <Link href='/adminLogin' ><MdLogin className='nav_icons'  /> Login as admin</Link></MenuItem>
                 <MenuDivider   />
-                <MenuItem> <MdLogout className='nav_icons'  /> Logout</MenuItem>
+                <MenuItem  onClick={logout} > <MdLogout className='nav_icons' /> Logout</MenuItem>
               </MenuList>
               
              </Menu> 
              <Button
+      onClick={logout}
       as={'a'}
       display={{ base: 'none', md: 'inline-flex' }}
       fontSize={'sm'}
@@ -362,7 +363,20 @@ function UserLogined(){
 
 
 
+function logout (){
+  
+sessionStorage.removeItem("user")
+sessionStorage.removeItem("doctor")
+sessionStorage.removeItem("role")
+sessionStorage.removeItem("token")
 
+alert("logout successfull")
+
+
+
+
+
+}
 
 
 
