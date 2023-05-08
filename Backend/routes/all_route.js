@@ -3,7 +3,7 @@ const ap = express.Router();
 
 const { pateint } = require("../models/pateint_models");
 const { slot } = require("../models/slot_model");
-const { doctor } = require("../models/doctor_signup_model");
+const { doctors } = require("../models/doctor_signup_model");
 const { authenticate } = require("../middleware/authenticate.js")
 const { authent } = require("../middleware/authent")
 ap.use(authenticate)
@@ -11,7 +11,7 @@ ap.use(authenticate)
 ap.get(`/users/`, authent(["admin"]), async (req, res) => {
     try {
         const datapateint = await pateint.findAll();
-        const datadoctor = await doctor.findAll();
+        const datadoctor = await doctors.findAll();
         res.status(200).json({
             isError: false,
             msg: "All Users",
@@ -30,8 +30,8 @@ ap.get(`/users/`, authent(["admin"]), async (req, res) => {
 //user slots booking     users
 ap.post("/slotbook/:userID", authent(["pateint"]), async (req, res) => {
     try {
-        const { pateintID, pateintname, appointmentDate, appointmentTime, doctorID, status } = req.body;
-        let data = await slot.create({ pateintID, pateintname, appointmentDate, appointmentTime, doctorID, status });
+        const { pateintID, pateintname, appointmentDate, appointmentTime, doctorID, status,description } = req.body;
+        let data = await slot.create({ pateintID, pateintname, appointmentDate, appointmentTime, doctorID, status,description });
         res.status(200).json({
             isError: false,
             msg: "Appointment Created Successfully!",
@@ -119,11 +119,31 @@ ap.get("/userstatus/:id", authent(["pateint"]), async (req, res) => {
 //all doctor
 ap.get(`/doctor/`, authent(["doctor", "pateint"]), async (req, res) => {
     try {
-        const datadoctor = await doctor.findAll();
+        const datadoctor = await doctors.findAll();
         res.status(200).json({
             isError: false,
             msg: "All Users",
             datadoctor
+        })
+    }
+    catch (err) {
+        console.log(err)
+        res.status(400).json({
+            isError: true,
+            msg: "Please Try Again!",
+            err
+        })
+    }
+})
+
+// All slot
+ap.get("/allslot", authent(["pateint", "docotr"]), async (req, res) => {
+    try {
+        let data = await slot.findAll()
+        res.status(200).json({
+            isError: false,
+            msg: "Status Updated Successfully",
+            data
         })
     }
     catch (err) {
@@ -134,8 +154,6 @@ ap.get(`/doctor/`, authent(["doctor", "pateint"]), async (req, res) => {
         })
     }
 })
-
-
 
 
 module.exports = { ap };
