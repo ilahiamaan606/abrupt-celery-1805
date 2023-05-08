@@ -5,7 +5,7 @@ const { Model, DataTypes } = require("sequelize");
 const slot = seq.define("slot", {
     pateintID: DataTypes.INTEGER,
     pateintname: DataTypes.STRING,
-    appointmentDate: DataTypes.DATE,
+    appointmentDate: DataTypes.STRING,
     appointmentTime: DataTypes.STRING,
     doctorID: DataTypes.INTEGER,
     status: DataTypes.STRING,

@@ -28,20 +28,19 @@ ap.get(`/users/`, authent(["admin"]), async (req, res) => {
     }
 })
 //user slots booking     users
-ap.post("/slotbook/:userID", authent(["pateint"]), async (req, res) => {
+ap.post("/slotbook", authent(["pateint"]), async (req, res) => {
     try {
-        const { pateintID, pateintname, appointmentDate, appointmentTime, doctorID, status,description } = req.body;
+        let { pateintID, pateintname, appointmentDate, appointmentTime, doctorID, status,description } = req.body;
         let data = await slot.create({ pateintID, pateintname, appointmentDate, appointmentTime, doctorID, status,description });
         res.status(200).json({
             isError: false,
             msg: "Appointment Created Successfully!",
             data
         })
-        res.status(200).json({
-            isError: false,
-        })
+       
     }
     catch (err) {
+        console.log(err)
         res.status(400).json({
             isError: true,
             msg: "Please Try Again!",
@@ -142,7 +141,7 @@ ap.get("/allslot", authent(["pateint", "docotr"]), async (req, res) => {
         let data = await slot.findAll()
         res.status(200).json({
             isError: false,
-            msg: "Status Updated Successfully",
+            msg: " ALL SLOTS ",
             data
         })
     }
