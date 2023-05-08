@@ -17,7 +17,8 @@ function Appointment() {
     <Stack flexWrap={"wrap"} className='appointmentContainer' w={"100%"} mx={0} flexDirection={"row"} px={"0px"}  align={"center"} justify={"space-between"}  >
     <AppointmentForm/>
      
-     {d?<DoctorSelected  />:<DoctorNotSelected className="onlyForDesktop" />}
+     {/* {d?<DoctorSelected  />:<DoctorNotSelected className="onlyForDesktop" />} */}
+     <DoctorNotSelected/>
     </Stack>
 
     </VStack>
