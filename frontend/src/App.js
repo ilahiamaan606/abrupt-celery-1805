@@ -1,7 +1,7 @@
 import Appointment from "./pages/appointment/Appointment";
 import Home from "./pages/home/Home";
-import Header  from "./components/Header";
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import Header from "./components/Header";
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NotFound from "./pages/notFound/NotFound";
 import Footer from "./pages/footer/Footer";
 import Login from "./pages/login_signup/Login";
@@ -9,31 +9,31 @@ import Signup from './pages/login_signup/Signup';
 import Department from "./pages/department/Department";
 import Staffs from "./pages/staffs/Staffs";
 import About from "./pages/About/About";
-import Myappointments from "./pages/myAppointments/Myappointments";
+// import Myappointments from "./pages/myAppointments/Myappointments";
 import adminlogin from "./pages/admin/adminlogin";
 import AdminDashPage from "./pages/admin/AdminDashPage";
 function App() {
   return (
-  <BrowserRouter>
-  
-  <Routes>
-  <Route exact path="/" Component={Home} />
+    <BrowserRouter>
 
-  <Route path="/bookappointment" Component={Appointment} />
-  <Route path="/departments" Component={Department} />
-  <Route path="/about" Component={About} />
-  <Route path="/ourstaffs" Component={Staffs} />
-  <Route path="/myappointments" Component={Myappointments} />
-  <Route path="/login" Component={Login} />
-  <Route path="/signup" Component={Signup} />
-  <Route path="/adminlogin" Component={adminlogin} />
-  <Route path="/adminhome" Component={AdminDashPage} />
+      <Routes>
+        <Route exact path="/" Component={Home} />
 
-  <Route path="*" Component={NotFound} />
-  </Routes>
-  
-  </BrowserRouter>
-  
+        <Route path="/bookappointment" Component={Appointment} />
+        <Route path="/departments" Component={Department} />
+        <Route path="/about" Component={About} />
+        <Route path="/ourstaffs" Component={Staffs} />
+        {/* <Route path="/myappointments" Component={Myappointments} /> */}
+        <Route path="/login" Component={Login} />
+        <Route path="/signup" Component={Signup} />
+        <Route path="/adminlogin" Component={adminlogin} />
+        <Route path="/adminhome" Component={AdminDashPage} />
+
+        <Route path="*" Component={NotFound} />
+      </Routes>
+
+    </BrowserRouter>
+
   );
 }
 

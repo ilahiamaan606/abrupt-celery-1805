@@ -3,7 +3,7 @@ const ap = express.Router();
 
 const { pateint } = require("../models/pateint_models");
 const { slot } = require("../models/slot_model");
-const { doctor } = require("../models/doctor_model");
+const { doctor } = require("../models/doctor_signup_model");
 const { authenticate } = require("../middleware/authenticate.js")
 const { authent } = require("../middleware/authent")
 ap.use(authenticate)
@@ -28,7 +28,7 @@ ap.get(`/users/`, authent(["admin"]), async (req, res) => {
     }
 })
 //user slots booking     users
-ap.post("/slotbook/:userID", async (req, res) => {
+ap.post("/slotbook/:userID", authent(["pateint"]), async (req, res) => {
     try {
         const { pateintID, pateintname, appointmentDate, appointmentTime, doctorID, status } = req.body;
         let data = await slot.create({ pateintID, pateintname, appointmentDate, appointmentTime, doctorID, status });
@@ -50,7 +50,7 @@ ap.post("/slotbook/:userID", async (req, res) => {
     }
 })
 //slots list wrt doctor id         doctor
-ap.get("/doctor/:id", async (req, res) => {
+ap.get("/doctor/:id", authent(["doctor"]), async (req, res) => {
     try {
         const data = await slot.findAll({
             where: {
@@ -73,7 +73,7 @@ ap.get("/doctor/:id", async (req, res) => {
     }
 })
 //slot updation|user slot updation     doctor/pateint
-ap.put("/status/:id", async (req, res) => {
+ap.put("/status/:id", authent(["doctor", "pateint"]), async (req, res) => {
 
     let { status } = req.body;
     try {
@@ -94,7 +94,7 @@ ap.put("/status/:id", async (req, res) => {
     }
 })
 // appoinment status             pateint
-ap.get("/userstatus/:id", async (req, res) => {
+ap.get("/userstatus/:id", authent(["pateint"]), async (req, res) => {
     try {
         let data = await slot.findAll({ where: { pateintID: req.params.id } })
         res.status(200).json({
