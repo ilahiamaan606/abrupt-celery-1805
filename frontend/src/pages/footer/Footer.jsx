@@ -62,7 +62,7 @@
               <Text fontSize={'sm'}>
                 © 2023 Horizon Health Care pvt limited. All rights reserved
               </Text>
-              <Stack direction={'row'} spacing={6}>
+              {/* <Stack direction={'row'} spacing={6}>
                 <SocialButton label={'Twitter'} href={'#'}>
                   <FaTwitter />
                 </SocialButton>
@@ -72,7 +72,7 @@
                 <SocialButton label={'Instagram'} href={'#'}>
                   <FaInstagram />
                 </SocialButton>
-              </Stack>
+              </Stack> */}
             </Stack>
             <Stack align={'flex-start'}>
               <ListHeader>Company</ListHeader>
@@ -90,7 +90,7 @@
               
               
             </Stack>
-            <Stack align={'flex-start'}>
+            {/* <Stack align={'flex-start'}>
               <ListHeader>Stay up to date</ListHeader>
               <Stack direction={'row'}>
                 <Input
@@ -113,7 +113,7 @@
                   icon={<BiMailSend />}
                 />
               </Stack>
-            </Stack>
+            </Stack> */}
           </SimpleGrid>
         </Container>
       </Box>
