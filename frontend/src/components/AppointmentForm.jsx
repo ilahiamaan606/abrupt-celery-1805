@@ -7,14 +7,15 @@ let doctorSelected = false;
 if(sessionStorage.getItem("doctor")){doctorSelected=true}
 let doctor = JSON.parse( sessionStorage.getItem("doctor")).name || "";
 let department = JSON.parse( sessionStorage.getItem("doctor")).department || "";
-const initialValues ={date:"",doctor,department,message:""}
+const initialValues ={date:"",doctor,department,message:"",time:""}
 const [formValue,setFormValue]=useState(initialValues);
 const [isSubmit,setIsSubmit]=useState(false);
 const [error,setError]=useState({});
 
 useEffect(()=>{
 if(isSubmit && Object.keys(error).length==0){
-  alert("ready to submit")
+  alert("ready to submit");
+  alert(JSON.stringify(formValue,null,4))
 }
 
 
@@ -37,6 +38,7 @@ function validate(obj){
   if(!obj.date){error.date="select a date"}
   if(!obj.doctor){error.doctor="select a doctor"}
   if(!obj.department){error.department="select a department"}
+  if(!obj.time){error.time="select time"}
   return error;
 }
 
@@ -52,9 +54,25 @@ function validate(obj){
     <Heading alignSelf={"flex-start"} my={2} >Book Appointment</Heading>
     <FormControl>
       <FormLabel>select date </FormLabel>
-      <Input name="date" onChange={handleChange} type='datetime-local' placeholder='select date and time'/>
+      <Input name="date" onChange={handleChange} type='date' placeholder='select date and time'/>
       <Text color={"red"} >{error.date}</Text>
     </FormControl>
+    <FormControl>
+      <FormLabel>Select time</FormLabel>
+      <Select name='time' onChange={handleChange}  >
+      
+        <option value={"10"} >10 AM to 11 AM</option>
+        <option value={"11"} >11 AM to 12 PM</option>
+        <option value={"1"} >1.00 PM to 1.55 PM</option>
+        <option value={"2"}>2 PM to 2.55 PM</option>
+        <option value={"3"}>3 PM to 4.55 PM</option>
+        <option value={"7"}>7 PM to 7.55 PM</option>
+        <option value={"8"} >8 PM to 8.55 PM</option>
+        
+      </Select>
+      <Text color={"red"} >{error.time}</Text>
+    </FormControl>
+    
     <FormControl>
       <FormLabel>Select Department </FormLabel>
       <Select name='department' onChange={handleChange}  >
