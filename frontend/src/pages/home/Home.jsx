@@ -8,10 +8,10 @@ import Footer from '../footer/Footer'
 function Home() {
 
 //attaching backend 
-let [doctors,setDoctors]=useState([]);
+// let [doctors,setDoctors]=useState([]);
 
 useEffect(()=>{
-  
+
 })
 
 

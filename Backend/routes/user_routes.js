@@ -48,7 +48,7 @@ users.post("/login", async (req, res) => {
                 if (result) {
                     let token = jwt.sign({ email: email }, process.env.key, { expiresIn: '24h' });
                     res.cookie("token", token);
-                    res.json({ "msg": "Login Succesfull", "token": token, "data": results });
+                    res.json({ "msg": "Login Succesfull", "token": token, "data": results[0] });
 
                 }
                 else {
