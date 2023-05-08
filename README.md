@@ -61,7 +61,7 @@ To run this project, you will need to add the following environment variables to
 ![image](https://user-images.githubusercontent.com/112754393/229429364-4f9e7424-d5b2-4386-aad8-b4f7f22c19bf.png) -->
 
 ## System Architecture
-<!-- ![image](https://i.imgur.com/oJW6QQe.jpeg) -->
+![image](https://raw.githubusercontent.com/ilahiamaan606/abrupt-celery-1805/main/frontend/src/assets/images/System%20Architecture.png)
 
 
 ## ER Diagram
