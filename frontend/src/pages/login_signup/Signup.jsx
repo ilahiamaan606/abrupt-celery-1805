@@ -11,6 +11,9 @@ function Signup() {
   let [flag,setFlag] = useState(false);
   let [otp,setOtp] = useState(0);
   let [generated_otp,setGenerated_otp] = useState(0);
+  let [on_doctor,setOn_doctor] = useState(false);
+  let[description,setDescription] = useState("");
+  let [department,setDepartment] = useState("");
   let name_change = (event)=>{
     setName(event.target.value);
   }
@@ -44,6 +47,8 @@ function Signup() {
     obj.role = role;
     if(role=="Doctor"){
         console.log(obj);
+        obj.description=description;
+        obj.department = department;
         fetch("http://localhost:4500/doc/signup",{
         method:"POST",
        headers:{
@@ -174,6 +179,22 @@ function Signup() {
         <div className="invalid-feedback">
           Please select a valid Role.
         </div>
+
+
+
+
+        {on_doctor&&<div className="col-md-9">
+        <label htmlFor="validationCustom05" className="form-label">Department</label>
+        <input type="text" className="form-control" id="validationCustom05" value={department} onChange={(event)=>{setDepartment(event.target.value)}} required/>
+        
+        <label htmlFor="validationCustom05" className="form-label">Description</label>
+        <input type="text" className="form-control" id="validationCustom05" value={description} onChange={(event)=>{setDescription(event.target.value)}} required/>
+        
+      </div>}
+
+
+
+
       </div>
   
       <div className="col-12">
