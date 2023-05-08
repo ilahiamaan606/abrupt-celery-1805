@@ -46,8 +46,9 @@ function Login() {
     })
     .then((res)=>res.json())
     .then((res)=>{console.log(res.data);
-    sessionStorage.setItem("key", (res.token));
-    sessionStorage.setItem("data", JSON.stringify(res.data));
+    sessionStorage.setItem("token", (res.token));
+    sessionStorage.setItem("user", JSON.stringify(res.data));
+    sessionStorage.setItem("role", JSON.stringify(res.data.role));
     alert(res.msg);
 
 

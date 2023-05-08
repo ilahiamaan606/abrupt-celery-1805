@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer")
 doc.post("/signup",async(req,res)=>{
-    let {name,email,password,role,department} = req.body;
+    let {name,email,password,role,department,description} = req.body;
      
     try {
         const [results, metadata] = await doctors.sequelize.query(`SELECT * FROM doctors WHERE email = '${email}'`);
@@ -15,7 +15,7 @@ doc.post("/signup",async(req,res)=>{
         else {
             bcrypt.hash(password,Number(process.env.salt),async(err,hash)=>{
                 if(hash){
-                    await doctors.create({name,email,role,password:hash,department})
+                    await doctors.create({name,email,role,password:hash,department,description})
                     res.json("Signup Succesfull");
                 }
                 else {

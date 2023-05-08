@@ -6,17 +6,17 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer")
 
 users.post("/signup", async (req, res) => {
-    let { name, email, password, role, department } = req.body;
+    let { name, email, password, role } = req.body;
 
     try {
-        const [results, metadata] = await pateint.sequelize.query(`SELECT * FROM pateint WHERE email = '${email}'`);
+        const [results, metadata] = await pateint.sequelize.query(`SELECT * FROM pateints WHERE email = '${email}'`);
         if (results.length != 0) {
             res.json("Email Already Signed Up");
         }
         else {
             bcrypt.hash(password, Number(process.env.salt), async (err, hash) => {
                 if (hash) {
-                    await pateint.create({ name, email, role, password: hash, department })
+                    await pateint.create({ name, email, role, password: hash })
                     res.json("Signup Succesfull");
                 }
                 else {
@@ -25,6 +25,7 @@ users.post("/signup", async (req, res) => {
             })
         }
     } catch (error) {
+        console.log(error)
         res.json("ERROR");
     }
 
@@ -36,7 +37,7 @@ users.post("/signup", async (req, res) => {
 users.post("/login", async (req, res) => {
     let { email, password } = req.body;
     try {
-        const [results, metadata] = await pateint.sequelize.query(`SELECT * FROM pateint WHERE email = '${email}'`);
+        const [results, metadata] = await pateint.sequelize.query(`SELECT * FROM pateints WHERE email = '${email}'`);
         if (results.length == 0) {
             res.json("User Not Found Signup Please");
         }

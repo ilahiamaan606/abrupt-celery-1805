@@ -1,4 +1,4 @@
-import React from 'react'
+import  {useEffect,useState} from 'react'
 import Header from '../../components/Header'
 import Hero from '../../components/Hero'
 import  Card  from '../../components/Card'
@@ -6,6 +6,20 @@ import {Flex, Heading, VStack,Button} from "@chakra-ui/react"
 import Footer from '../footer/Footer'
 
 function Home() {
+
+//attaching backend 
+let [doctors,setDoctors]=useState([]);
+
+useEffect(()=>{
+  
+})
+
+
+
+
+//attaching backend end
+
+
   localStorage.setItem("user","false");
   let doctors = [
     {name:"Dr alexander",department:"cardiology",description:"Here you can see the list of available doctors , choose  a department and book an appointment with any of our doctors.",fee:20},

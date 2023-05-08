@@ -116,6 +116,25 @@ ap.get("/userstatus/:id", authent(["pateint"]), async (req, res) => {
 //middleware update
 
 
+//all doctor
+ap.get(`/doctor/`, authent(["doctor", "pateint"]), async (req, res) => {
+    try {
+        const datadoctor = await doctor.findAll();
+        res.status(200).json({
+            isError: false,
+            msg: "All Users",
+            datadoctor
+        })
+    }
+    catch (err) {
+        res.status(400).json({
+            isError: true,
+            msg: "Please Try Again!",
+            err
+        })
+    }
+})
+
 
 
 
