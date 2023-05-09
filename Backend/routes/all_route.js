@@ -154,5 +154,32 @@ ap.get("/allslot", authent(["pateint", "docotr"]), async (req, res) => {
     }
 })
 
+// slots list wrt pateint id 
+ap.get("/pateint/:id", authent(["pateint"]), async (req, res) => {
+    try {
+        const data = await slot.findAll({
+            where: {
+                pateintID: req.params.id
+            }
+        });
+        res.status(200).json({
+            isError: false,
+            msg: "All appointment of pateint",
+            data
+        })
+
+    }
+    catch (err) {
+        res.status(400).json({
+            isError: true,
+            msg: "Please Try Again!",
+            err
+        })
+    }
+})
+
+
+
+
 
 module.exports = { ap };
