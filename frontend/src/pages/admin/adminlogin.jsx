@@ -17,10 +17,10 @@ function adminlogin() {
   let submit = (e)=>{
     e.preventDefault();
     let obj = {};
-    obj.email = email;
-    obj.password = password;
+    obj.username = email;
+    obj.pass = password;
 
-    fetch(`http://localhost:4500/adminlogin`,{
+    fetch(`http://localhost:4500/adminLogin`,{
         method:"POST",
        headers:{
         'Content-type':'Application/json'
@@ -29,9 +29,12 @@ function adminlogin() {
         JSON.stringify(obj)
     })
     .then((res)=>res.json())
-    .then((res)=>{console.log(res.message);
+    .then((res)=>{alert(res.message);
+    
     setEmail("");
     setPassword("");
+    window.location.href = "http://localhost:3000/adminhome";
+
     })
     .catch((err)=>console.log(err))
     
@@ -49,7 +52,7 @@ function adminlogin() {
             <form onSubmit={submit}>
                 <div className="mb-3">
                   <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                  <input type="email" className="form-control" id="email" aria-describedby="emailHelp" value={email} onChange={email_change} required/>
+                  <input className="form-control" id="email" aria-describedby="emailHelp" value={email} onChange={email_change} required/>
                   {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
                 </div>
                 <div className="mb-3">
