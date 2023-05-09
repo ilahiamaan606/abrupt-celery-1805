@@ -11,8 +11,6 @@ function Home() {
  let [doctors1,setDoctors]=useState([]);
  
 useEffect(()=>{
-
-
   fetch('http://localhost:4500/ap/doctor/?role=pateint', {
     method: 'GET',
     headers: {
@@ -26,12 +24,8 @@ useEffect(()=>{
       // console.log(json.datadoctor)
       setDoctors(json.datadoctor)
       console.log(doctors1)
-      
-    
     });
    
-
-
 
 },[])
 

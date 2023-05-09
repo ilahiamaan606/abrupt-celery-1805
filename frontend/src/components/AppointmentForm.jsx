@@ -150,13 +150,13 @@ function validate(obj){
       <FormLabel>Select time</FormLabel>
       <Select name='time' onChange={handleChange}  >
       
-        <option value={"10"} >10 AM to 11 AM</option>
-        <option value={"11"} >11 AM to 12 PM</option>
-        <option value={"1"} >1.00 PM to 1.55 PM</option>
-        <option value={"2"}>2 PM to 2.55 PM</option>
-        <option value={"3"}>3 PM to 4.55 PM</option>
-        <option value={"7"}>7 PM to 7.55 PM</option>
-        <option value={"8"} >8 PM to 8.55 PM</option>
+        <option value={"10 AM"} >10 AM to 11 AM</option>
+        <option value={"11 AM"} >11 AM to 12 PM</option>
+        <option value={"1 PM"} >1.00 PM to 1.55 PM</option>
+        <option value={"2 PM"}>2 PM to 2.55 PM</option>
+        <option value={"3 PM"}>3 PM to 4.55 PM</option>
+        <option value={"7 PM"}>7 PM to 7.55 PM</option>
+        <option value={"8 PM"} >8 PM to 8.55 PM</option>
         
       </Select>
       <Text color={"red"} >{error.time}</Text>

@@ -15,6 +15,8 @@ import adminlogin from "./pages/admin/adminlogin";
 import AdminDashPage from "./pages/admin/AdminDashPage";
 
 function App() {
+  let role = sessionStorage.getItem("role")
+
   return (
   <BrowserRouter>
   
