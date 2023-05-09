@@ -4,10 +4,10 @@ import Hero from '../../components/Hero'
 import  Card  from '../../components/Card'
 import {Flex, Heading, VStack,Button, useFormControlStyles} from "@chakra-ui/react"
 import Footer from '../footer/Footer'
-
+import swal from "sweetalert2"
 function Home() {
-
-//attaching backend 
+if(!sessionStorage.getItem("role")){window.location.href="/login"}
+//fetching doctors data
  let [doctors1,setDoctors]=useState([]);
  
 useEffect(()=>{

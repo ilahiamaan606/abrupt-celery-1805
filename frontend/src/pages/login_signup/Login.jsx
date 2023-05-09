@@ -50,10 +50,7 @@ function Login() {
     sessionStorage.setItem("user", JSON.stringify(res.data));
     sessionStorage.setItem("role", res.data.role.toLowerCase());
     alert(res.msg);
-
-
-    toastLiveExample.show()
-
+   
 
     if(res.msg=="Login Succesfull"){
       window.location.href="/";

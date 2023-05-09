@@ -28,6 +28,8 @@ function Signup() {
 
   let role_change=(event)=>{
     setRole(event.target.value);
+    if(event.target.value=="Doctor"){setOn_doctor(true)}
+    else {setOn_doctor(false)}
   }
 
   let otp_entered = (event)=>{

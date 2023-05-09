@@ -1,7 +1,47 @@
 import {useState,useEffect} from 'react'
 import { Text,VStack,Textarea,Button, Stack,Input, Heading, FormLabel,FormControl,Avatar, Select } from '@chakra-ui/react'
-import { object } from 'yup';
+import swal from 'sweetalert2'
 function AppointmentForm() {
+//________________________________________________
+//fetching doctors data
+let [doctors1,setDoctors]=useState([]);
+let obj={}
+
+ 
+useEffect(()=>{
+  fetch('http://localhost:4500/ap/doctor/?role=pateint', {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      'Authorization':sessionStorage.getItem("token")
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      
+      // console.log(json.datadoctor)
+      setDoctors(json.datadoctor)
+      //console.log(doctors1)
+    });
+
+
+
+},[])
+  //____________department as obj______________________
+
+  if(doctors1.length!=0){
+    doctors1.map((item,i)=>{
+      
+      
+      if(item.department){ obj[item.department]=item.department}
+      })
+      console.log(obj)
+    
+    }
+    //________________________________________________
+  
+//console.log(doctors1,"doctors111111111111")
+
 const [allSlots ,setAllslots]=useState([]);
 
 useEffect(()=>{
@@ -38,9 +78,16 @@ useEffect(()=>{
 
 //checking for doctor details in session storage
 let doctorSelected = false;
+
+
 if(sessionStorage.getItem("doctor")){doctorSelected=true}
-let doctor = JSON.parse( sessionStorage.getItem("doctor")).name || "";
-let department = JSON.parse( sessionStorage.getItem("doctor")).department || "";
+ let doctor;
+ if( sessionStorage.getItem("doctor")){doctor=JSON.parse( sessionStorage.getItem("doctor")).name}
+ else{doctor=""}
+ let department ;
+ if( sessionStorage.getItem("doctor")){department=JSON.parse( sessionStorage.getItem("doctor")).department}
+ else{department=""}
+
 const initialValues ={date:"",doctor,department,message:"",time:""}
 const [formValue,setFormValue]=useState(initialValues);
 const [isSubmit,setIsSubmit]=useState(false);
@@ -48,7 +95,7 @@ const [error,setError]=useState({});
 let [flag,setFlag]=useState(false)
 useEffect(()=>{
 if(isSubmit && Object.keys(error).length==0){
-  // alert("ready to submit");
+   //alert("ready to submit");
   //alert(JSON.stringify(formValue,null,4))
   let user = JSON.parse(sessionStorage.getItem("user"));
   let doctor = JSON.parse(sessionStorage.getItem("doctor"));
@@ -69,11 +116,11 @@ if(isSubmit && Object.keys(error).length==0){
   //console.log(allSlots,"allslots (((((((((((((")
   let conflictData = allSlots.filter((item)=>{
     
-    console.log("************************")
-    console.log(item.appointmentDate==data.appointmentDate,item.appointmentDate,data.appointmentDate)
-    console.log(item.appointmentTime==data.appointmentTime,item.appointmentTime,data.appointmentTime)
-    console.log(item.doctorID==data.doctorID,item.doctorID,data.doctorID)
-    console.log("************************")
+    // console.log("************************")
+    // console.log(item.appointmentDate==data.appointmentDate,item.appointmentDate,data.appointmentDate)
+    // console.log(item.appointmentTime==data.appointmentTime,item.appointmentTime,data.appointmentTime)
+    // console.log(item.doctorID==data.doctorID,item.doctorID,data.doctorID)
+    // console.log("************************")
     return ( item.appointmentDate==data.appointmentDate || item.appointmentTime==data.appointmentTime && item.doctorID==data.doctorID)
   })
   
@@ -93,17 +140,17 @@ if(isSubmit && Object.keys(error).length==0){
       
        console.log(json)
        
-       alert(json.msg)
-      
+       //alert(json.msg)
+       swal.fire(json.msg)
       
     
     });
    
 
  }
- console.log(conflictData.length,conflictData,"conflict data length")
- console.log(data,"data")
- conflictData.length==0?(pushToBackend(data)):(alert("slot is not available,try to book another slot"));
+ //console.log(conflictData.length,conflictData,"conflict data length")
+ //console.log(data,"data")
+ conflictData.length==0?(pushToBackend(data)):(swal.fire("slot is not available,try to book another slot"));
 
 }
 
@@ -122,7 +169,7 @@ setFlag(!flag)
 function handleChange(e){
 const {name,value}=e.target;
 setFormValue({...formValue,[name]:value})
-console.log(formValue)
+//console.log(formValue)
 }
 function validate(obj){
   const error ={}
@@ -162,23 +209,28 @@ function validate(obj){
       <Text color={"red"} >{error.time}</Text>
     </FormControl>
     
-    <FormControl>
+    {/* <FormControl>
       <FormLabel>Select Department </FormLabel>
       <Select name='department' onChange={handleChange}  >
-      {doctorSelected?<option>{JSON.parse(sessionStorage.getItem("doctor")).department}</option>:<option>select a doctor</option>}
-        <option>cardiology</option>
-        <option>physiology</option>
-        <option>phycotherapy</option>
+      {doctorSelected?<option>{JSON.parse(sessionStorage.getItem("doctor")).department}</option>:<option>select a department</option>}
+        {
+         Object.keys(obj).map((item,i)=>{
+           return <option>{item}</option>
+         })
+        }
       </Select>
       <Text color={"red"} >{error.department}</Text>
-    </FormControl>
+    </FormControl> */}
     <FormControl>
       <FormLabel>Select Doctor </FormLabel>
       <Select   name='doctor' onChange={handleChange}  >
         {doctorSelected?<option>{JSON.parse(sessionStorage.getItem("doctor")).name}</option>:<option>select a doctor</option>}
-        <option>andnuu</option>
-        <option>alexander</option>
-        <option>psdf</option>
+        
+        {
+          doctors1.map((item,i)=>{
+            return <option>{item.name}</option>
+          })
+        }
       </Select>
       <Text color={"red"} >{error.doctor}</Text>
     </FormControl>

@@ -5,9 +5,10 @@ import DoctorNotSelected from './DoctorNotSelected';
 import DoctorSelected from './DoctorSelected';
 import Header from '../../components/Header';
 import Footer from '../footer/Footer';
+import swal from "sweetalert2"
 
 function Appointment() {
-  localStorage.setItem("doctor",JSON.stringify({name:"Dr venugopal",deparment:"cardology",email:"venu@gmail.com",desc:"lorem ispum doler sit amet and doning skdfjh sdfhaidfhaidfha adhf sdfhsdfgvskdfh ",profilePic:"https://media.istockphoto.com/id/1330046035/photo/headshot-portrait-of-smiling-female-doctor-in-hospital.jpg?s=612x612&w=0&k=20&c=fsNQPbmFIxoKA-PXl3G745zj7Cvr_cFIGsYknSbz_Tg="}))
+  if(!sessionStorage.getItem("role")){window.location.href="/login"}
   let d = true
   return (
     <>
