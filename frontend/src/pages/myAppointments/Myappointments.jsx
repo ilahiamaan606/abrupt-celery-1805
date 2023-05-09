@@ -6,7 +6,7 @@ import Footer from '../footer/Footer';
 let dImages = ["https://img.freepik.com/premium-vector/doctor-profile-with-medical-service-icon_617655-48.jpg?w=2000","https://www.sketchappsources.com/resources/source-image/doctor-illustration-hamamzai.png","https://www.browardhealth.org/-/media/bh_doctor_images/631299.jpg","https://app.doctornow.hk/wp-content/uploads/Doctor-pana-1.png","https://static.vecteezy.com/system/resources/thumbnails/002/896/807/small/female-doctor-using-her-digital-tablet-free-vector.jpg","https://static.vecteezy.com/system/resources/previews/006/042/381/original/female-doctor-with-stethoscope-free-vector.jpg","https://thumbs.dreamstime.com/z/female-doctor-vector-illustration-family-flat-cartoon-style-design-186907994.jpg"]
 
 function Myappointments() {
-
+ if(!sessionStorage.getItem("role")){window.location.href="/login"}
  let role = sessionStorage.getItem("role");
  let user =JSON.stringify( sessionStorage.getItem("user"));
  let [appointments,setAppointments]=useState([])
@@ -16,7 +16,7 @@ function Myappointments() {
 function fetchandUpdateAppointmentsData(){
   
   if(role=="Doctor"){
-    fetch('http://localhost:4500/ap/doctor/1?role=doctor', {
+    fetch(`http://localhost:4500/ap/doctor/${user.id}?role=doctor`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -34,7 +34,7 @@ function fetchandUpdateAppointmentsData(){
 
   }
   else if(role=="Patient"){
-    fetch('http://localhost:4500/ap/pateint/2?role=pateint', {
+    fetch(`http://localhost:4500/ap/pateint/${user.id}?role=pateint`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -69,7 +69,8 @@ function fetchandUpdateAppointmentsData(){
       
       
       //alert(JSON.stringify(json))
-      
+      // if(response.status=="ok"){fetchandUpdateAppointmentsData()}
+   
       alert(`${json.msg} for appointment with id ${json.data[0].id}`)
       fetchandUpdateAppointmentsData()
     });
@@ -114,6 +115,7 @@ function fetchandUpdateAppointmentsData(){
       //alert(JSON.stringify(json))
       
       alert(`${json.msg} for appointment with id ${json.data[0].id}`)
+      
       fetchandUpdateAppointmentsData()
     });
   
@@ -226,7 +228,7 @@ variant='outline'
 
 
     }
-    else if(role=="Patient"){
+    else{
       fetch('http://localhost:4500/ap/pateint/2?role=pateint', {
         method: 'GET',
         headers: {
@@ -250,7 +252,8 @@ variant='outline'
 
 
 
- //console.log(appointments)
+ console.log(appointments)
+ //alert(appointments)
 
 
  
