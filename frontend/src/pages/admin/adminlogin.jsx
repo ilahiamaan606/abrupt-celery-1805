@@ -1,7 +1,7 @@
-import React ,{useState,useEffect}from 'react'
+import {useState,useEffect}from 'react'
 import styles from './Login.module.css'
-
-function adminlogin() {
+import swal from "sweetalert2"
+function Adminlogin() {
   
   let [email,setEmail] = useState("");
   let [password,setPassword] = useState("");
@@ -19,7 +19,7 @@ function adminlogin() {
     let obj = {};
     obj.username = email;
     obj.pass = password;
-
+    
     fetch(`http://localhost:4500/adminLogin`,{
         method:"POST",
        headers:{
@@ -29,11 +29,20 @@ function adminlogin() {
         JSON.stringify(obj)
     })
     .then((res)=>res.json())
-    .then((res)=>{alert(res.message);
+    .then((res)=>{
+      if(res.status==200){
+        // alert(res.message);
+        swal.fire(res.message)
+        window.location.href = "http://localhost:3000/adminhome";}
+      else{
+        console.log(res.status)
+        swal.fire("you are not authorized")
+      }
+    
     
     setEmail("");
     setPassword("");
-    window.location.href = "http://localhost:3000/adminhome";
+    
 
     })
     .catch((err)=>console.log(err))
@@ -72,4 +81,4 @@ function adminlogin() {
   )
 }
 
-export default adminlogin
+export default Adminlogin

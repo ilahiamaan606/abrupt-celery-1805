@@ -127,6 +127,7 @@ if(isSubmit && Object.keys(error).length==0){
   
  function pushToBackend(data){
   console.log("posting started")
+  alert("posting started")
   fetch(`http://localhost:4500/ap/slotbook/?role=pateint`, {
     method: 'POST',
     body: JSON.stringify(data),
