@@ -2,7 +2,7 @@ const express = require("express");
 const admin = express.Router();
 require('dotenv').config();
 const { pateint } = require("../models/pateint_models");
-const { doctor } = require("../models/doctor_signup_model");
+const { doctors } = require("../models/doctor_signup_model");
 
 //admin login page
 const Admin = async (req, res) => {
@@ -54,7 +54,7 @@ admin.get('/patient', async (req, res) => {
 //getting doctor information
 admin.get('/doctor', async (req, res) => {
     try {
-        const data = await doctor.findAll();
+        const data = await doctors.findAll();
         res.send({
             status: 200,
             message: "All Doctors",
@@ -135,7 +135,7 @@ admin.delete("/Patient_delete/:id", async (req, res) => {
 //Deleting Doctor information
 admin.delete("/Doctor_delete/:id", async (req, res) => {
     try {
-        const data = await doctor.destroy({ id: req.params.id });
+        const data = await doctors.destroy({ id: req.params.id });
         res.json({
             status: 200,
             msg: "Details Deleted",
