@@ -11,7 +11,7 @@ const Admin = async (req, res) => {
         if (username === process.env.Admin_user && pass === process.env.Admin_password) {
             res.send({
                 status: 200,
-                message: "Welcome to Admin",
+                message: "Welcome Admin",
                 Location: ""
             })
         } else {
@@ -115,7 +115,7 @@ admin.put("/Doctor_update/:id", async (req, res) => {
 //deleting Patient information
 admin.delete("/Patient_delete/:id", async (req, res) => {
     try {
-        const data = await pateint.destroy({ id: req.params.id });
+        const data = await pateint.destroy({where:{ id: req.params.id }});
         res.json({
             status: 200,
             msg: "Details Deleted",
@@ -135,7 +135,7 @@ admin.delete("/Patient_delete/:id", async (req, res) => {
 //Deleting Doctor information
 admin.delete("/Doctor_delete/:id", async (req, res) => {
     try {
-        const data = await doctors.destroy({ id: req.params.id });
+        const data = await doctors.destroy({where:{ id: req.params.id }});
         res.json({
             status: 200,
             msg: "Details Deleted",
