@@ -60,7 +60,7 @@ function Adminlogin() {
             <h1>Login to your Account</h1>
             <form onSubmit={submit}>
                 <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                  <label htmlFor="exampleInputEmail1" className="form-label">Username</label>
                   <input className="form-control" id="email" aria-describedby="emailHelp" value={email} onChange={email_change} required/>
                   {/* <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div> */}
                 </div>
