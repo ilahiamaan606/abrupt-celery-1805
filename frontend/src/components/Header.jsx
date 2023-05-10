@@ -253,10 +253,10 @@ const DesktopNav = () => {
       label: 'About',
       href: '/about',
     },
-    {
-      label: 'services',
-      href: '/services',
-    },
+    // {
+    //   label: 'services',
+    //   href: '/services',
+    // },
   ];
 
 

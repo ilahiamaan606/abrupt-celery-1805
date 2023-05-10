@@ -8,10 +8,55 @@ let dImages = ["https://img.freepik.com/premium-vector/doctor-profile-with-medic
 function Myappointments() {
  if(!sessionStorage.getItem("role")){window.location.href="/login"}
  let role = sessionStorage.getItem("role");
- let user =JSON.stringify( sessionStorage.getItem("user"));
+ let user =JSON.parse( sessionStorage.getItem("user"));
+ let id = user.id;
  let [appointments,setAppointments]=useState([])
- let [load,setLoad]=useState(0);
+//  let [load,setLoad]=useState(0);
 //  setLoad(load+1)
+
+
+useEffect(()=>{
+
+  if(role=="Doctor"){
+    fetch(`http://localhost:4500/ap/doctor/${id}?role=doctor`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        'Authorization':sessionStorage.getItem("token")
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        
+        // console.log(json.datadoctor)
+        setAppointments(json.data)
+        
+      });
+
+
+  }
+  else{
+    fetch(`http://localhost:4500/ap/pateint/${id}?role=pateint`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        'Authorization':sessionStorage.getItem("token")
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        
+        // console.log(json.datadoctor)
+        setAppointments(json.data)
+        
+      });
+  }
+  
+
+
+},[])
+
+
 
 function fetchandUpdateAppointmentsData(){
   
@@ -33,7 +78,8 @@ function fetchandUpdateAppointmentsData(){
 
 
   }
-  else if(role=="Patient"){
+  else  {
+    
     fetch(`http://localhost:4500/ap/pateint/${user.id}?role=pateint`, {
       method: 'GET',
       headers: {
@@ -70,9 +116,9 @@ function fetchandUpdateAppointmentsData(){
       
       //alert(JSON.stringify(json))
       // if(response.status=="ok"){fetchandUpdateAppointmentsData()}
-   
-      alert(`${json.msg} for appointment with id ${json.data[0].id}`)
       fetchandUpdateAppointmentsData()
+      alert(`${json.msg} for appointment with id ${json.data[0].id}`)
+     
     });
   }
   function doctorReject(id){
@@ -196,69 +242,13 @@ variant='outline'
 
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-  useEffect(()=>{
-
-    if(role=="Doctor"){
-      fetch('http://localhost:4500/ap/doctor/1?role=doctor', {
-        method: 'GET',
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-          'Authorization':sessionStorage.getItem("token")
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          
-          // console.log(json.datadoctor)
-          setAppointments(json.data)
-          
-        });
-
-
-    }
-    else{
-      fetch('http://localhost:4500/ap/pateint/2?role=pateint', {
-        method: 'GET',
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-          'Authorization':sessionStorage.getItem("token")
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          
-          // console.log(json.datadoctor)
-          setAppointments(json.data)
-          
-        });
-    }
-    
-
-
-  },[])
-
-
-
-
  console.log(appointments)
  //alert(appointments)
 
 
  
 
- let id = user.id;
+
  
 
 

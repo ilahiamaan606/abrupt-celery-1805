@@ -11,7 +11,7 @@ import Staffs from "./pages/staffs/Staffs";
 import About from "./pages/About/About";
 
 import Myappointments from "./pages/myAppointments/Myappointments";
-import adminlogin from "./pages/admin/adminlogin";
+import Adminlogin from "./pages/admin/Adminlogin";
 import AdminDashPage from "./pages/admin/AdminDashPage";
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
   <Route path="/myappointments" Component={Myappointments} />
   <Route path="/login" Component={Login} />
   <Route path="/signup" Component={Signup} />
-  <Route path="/adminlogin" Component={adminlogin} />
+  <Route path="/adminlogin" Component={Adminlogin} />
   <Route path="/adminhome" Component={AdminDashPage} />
 
   <Route path="*" Component={NotFound} />
