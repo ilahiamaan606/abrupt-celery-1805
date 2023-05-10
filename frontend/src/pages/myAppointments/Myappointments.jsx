@@ -3,6 +3,8 @@ import {Stack,Image,CardBody,Text,Card,Heading,CardFooter,Button, Badge} from "@
 import {FaClock,FaCalendarAlt} from "react-icons/fa";
 import Header from '../../components/Header';
 import Footer from '../footer/Footer';
+let baseUrl = "http://localhost:4500";
+
 let dImages = ["https://img.freepik.com/premium-vector/doctor-profile-with-medical-service-icon_617655-48.jpg?w=2000","https://www.sketchappsources.com/resources/source-image/doctor-illustration-hamamzai.png","https://www.browardhealth.org/-/media/bh_doctor_images/631299.jpg","https://app.doctornow.hk/wp-content/uploads/Doctor-pana-1.png","https://static.vecteezy.com/system/resources/thumbnails/002/896/807/small/female-doctor-using-her-digital-tablet-free-vector.jpg","https://static.vecteezy.com/system/resources/previews/006/042/381/original/female-doctor-with-stethoscope-free-vector.jpg","https://thumbs.dreamstime.com/z/female-doctor-vector-illustration-family-flat-cartoon-style-design-186907994.jpg"]
 
 function Myappointments() {
@@ -18,7 +20,7 @@ function Myappointments() {
 useEffect(()=>{
 
   if(role=="Doctor"){
-    fetch(`http://localhost:4500/ap/doctor/${id}?role=doctor`, {
+    fetch(`${baseUrl}/ap/doctor/${id}?role=doctor`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -36,7 +38,7 @@ useEffect(()=>{
 
   }
   else{
-    fetch(`http://localhost:4500/ap/pateint/${id}?role=pateint`, {
+    fetch(`${baseUrl}/ap/pateint/${id}?role=pateint`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -61,7 +63,7 @@ useEffect(()=>{
 function fetchandUpdateAppointmentsData(){
   
   if(role=="Doctor"){
-    fetch(`http://localhost:4500/ap/doctor/${user.id}?role=doctor`, {
+    fetch(`${baseUrl}/ap/doctor/${user.id}?role=doctor`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -80,7 +82,7 @@ function fetchandUpdateAppointmentsData(){
   }
   else  {
     
-    fetch(`http://localhost:4500/ap/pateint/${user.id}?role=pateint`, {
+    fetch(`${baseUrl}/ap/pateint/${user.id}?role=pateint`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -102,7 +104,7 @@ function fetchandUpdateAppointmentsData(){
 
   function doctorAccept(id){
   
-  fetch(`http://localhost:4500/ap/status/${id}?role=pateint`, {
+  fetch(`${baseUrl}/ap/status/${id}?role=pateint`, {
     method: 'PUT',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
@@ -122,7 +124,7 @@ function fetchandUpdateAppointmentsData(){
     });
   }
   function doctorReject(id){
-    fetch(`http://localhost:4500/ap/status/${id}?role=pateint`, {
+    fetch(`${baseUrl}/ap/status/${id}?role=pateint`, {
     method: 'PUT',
     body:JSON.stringify({status:"cancelled"}),
     headers: {
@@ -143,10 +145,9 @@ function fetchandUpdateAppointmentsData(){
   
   function patientCancel(id){
   
-  // alert(`cancelled with id ${id}`)
-  //http://localhost:4500/ap/status/41?role=pateint
+
   //put
-  fetch(`http://localhost:4500/ap/status/${id}?role=pateint`, {
+  fetch(`${baseUrl}/ap/status/${id}?role=pateint`, {
     method: 'PUT',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',

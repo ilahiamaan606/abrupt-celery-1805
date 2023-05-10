@@ -15,7 +15,7 @@ function DoctorSelected() {
     <VStack className='doctorDetails' p={6} alignItems={"left"} borderRadius={"5px"} bgColor="gray.200" w={"48%"}  >
     <Heading   mb={4}  fontSize={"20px"}>Details of Doctor</Heading>
     <Box className='doctorDetailsSubBox' display={"flex"}  mt={4} >
-    <Image w={"150px"} h={"150px"} borderRadius={"5px"} src={"https://img.freepik.com/premium-vector/doctor-surgeon-pharmacist-therapist-with-stethoscope-smiling-medic-worker-medical-staff_458444-338.jpg?w=2000"} alt='Dan Abramov' />
+    <Image w={"150px"} h={"150px"} borderRadius={"5px"} src={"https://img.freepik.com/premium-vector/doctor-surgeon-pharmacist-therapist-with-stethoscope-smiling-medic-worker-medical-staff_458444-338.jpg?w=2000"} alt={doctor.name} />
     <Box  p={4} >
     <Heading fontSize={"20px"}>{doctor.name}</Heading>
     <Text display={"flex"} alignItems={"center"} ><MdMarkEmailRead  color="blue.700" /> {" |   "+doctor.email}</Text>

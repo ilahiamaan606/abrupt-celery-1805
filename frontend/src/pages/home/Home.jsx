@@ -5,13 +5,14 @@ import  Card  from '../../components/Card'
 import {Flex, Heading, VStack,Button, useFormControlStyles} from "@chakra-ui/react"
 import Footer from '../footer/Footer'
 import swal from "sweetalert2"
+let baseUrl = "http://localhost:4500";
 function Home() {
 if(!sessionStorage.getItem("role")){window.location.href="/login"}
 //fetching doctors data
  let [doctors1,setDoctors]=useState([]);
  
 useEffect(()=>{
-  fetch('http://localhost:4500/ap/doctor/?role=pateint', {
+  fetch(`${baseUrl}/ap/doctor/?role=pateint`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
