@@ -1,6 +1,8 @@
 import {useState,useEffect} from 'react'
 import { Text,VStack,Textarea,Button, Stack,Input, Heading, FormLabel,FormControl,Avatar, Select } from '@chakra-ui/react'
 import swal from 'sweetalert2'
+let baseUrl = "http://localhost:4500"
+
 function AppointmentForm() {
 //________________________________________________
 //fetching doctors data
@@ -10,7 +12,7 @@ let obj={}
 
  
 useEffect(()=>{
-  fetch('http://localhost:4500/ap/doctor/?role=pateint', {
+  fetch(`${baseUrl}/ap/doctor/?role=pateint`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
@@ -48,7 +50,7 @@ const [allSlots ,setAllslots]=useState([]);
 useEffect(()=>{
 
 
-  fetch('http://localhost:4500/ap/allslot/?role=pateint', {
+  fetch(`${baseUrl}/ap/allslot/?role=pateint`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
@@ -147,7 +149,7 @@ else{
 function pushToBackend(data){
  
   alert("posting started")
-  fetch(`http://localhost:4500/ap/slotbook/?role=pateint`, {
+  fetch(`${baseUrl}/ap/slotbook/?role=pateint`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -170,7 +172,7 @@ function pushToBackend(data){
  }
 function  updateSlots(){
   
-  fetch('http://localhost:4500/ap/allslot/?role=pateint', {
+  fetch(`${baseUrl}/ap/allslot/?role=pateint`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
