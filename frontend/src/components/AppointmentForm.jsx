@@ -5,6 +5,7 @@ function AppointmentForm() {
 //________________________________________________
 //fetching doctors data
 let [doctors1,setDoctors]=useState([]);
+let [postFlag,setPostFlag]=useState(true);
 let obj={}
 
  
@@ -35,7 +36,7 @@ useEffect(()=>{
       
       if(item.department){ obj[item.department]=item.department}
       })
-      console.log(obj)
+      //console.log(obj)
     
     }
     //________________________________________________
@@ -114,19 +115,37 @@ if(isSubmit && Object.keys(error).length==0){
   
   //check for conflict 
   //console.log(allSlots,"allslots (((((((((((((")
-  let conflictData = allSlots.filter((item)=>{
+  function filteAndCheck(){
+  let flag =true;
+  allSlots.map((item)=>{
     
     // console.log("************************")
     // console.log(item.appointmentDate==data.appointmentDate,item.appointmentDate,data.appointmentDate)
     // console.log(item.appointmentTime==data.appointmentTime,item.appointmentTime,data.appointmentTime)
     // console.log(item.doctorID==data.doctorID,item.doctorID,data.doctorID)
     // console.log("************************")
-    return ( item.appointmentDate==data.appointmentDate || item.appointmentTime==data.appointmentTime && item.doctorID==data.doctorID)
+  
+    if(item.appointmentDate==data.appointmentDate && item.appointmentTime==data.appointmentTime && item.doctorID==data.doctorID){flag=false}
+    
   })
-  
-  
- function pushToBackend(data){
-  console.log("posting started")
+//___________flag ready
+
+if(flag){
+  pushToBackend(data);
+  //update slots data 
+  updateSlots()
+}
+else{
+  swal.fire("slot is not available,try to book another slot")
+}
+
+} filteAndCheck()
+}
+
+},[flag])
+
+function pushToBackend(data){
+ 
   alert("posting started")
   fetch(`http://localhost:4500/ap/slotbook/?role=pateint`, {
     method: 'POST',
@@ -139,7 +158,7 @@ if(isSubmit && Object.keys(error).length==0){
     .then((response) => response.json())
     .then((json) => {
       
-       console.log(json)
+       //console.log(json)
        
        //alert(json.msg)
        swal.fire(json.msg)
@@ -149,15 +168,31 @@ if(isSubmit && Object.keys(error).length==0){
    
 
  }
- //console.log(conflictData.length,conflictData,"conflict data length")
- //console.log(data,"data")
- conflictData.length==0?(pushToBackend(data)):(swal.fire("slot is not available,try to book another slot"));
+function  updateSlots(){
+  
+  fetch('http://localhost:4500/ap/allslot/?role=pateint', {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      'Authorization':sessionStorage.getItem("token")
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      
+      // console.log(json)
+       
+       setAllslots(json.data);
+      // alert(JSON.stringify(json.data));
+     
+
+      
+    
+    });
+   
+
 
 }
-
-},[flag])
-
-
 
 function handleSubmit(e){
 e.preventDefault();
@@ -170,6 +205,13 @@ setFlag(!flag)
 function handleChange(e){
 const {name,value}=e.target;
 setFormValue({...formValue,[name]:value})
+//console.log(formValue)
+}
+function handleChangeDoctors(e){
+const {name,value}=e.target;
+//setFormValue({...formValue,[name]:value})
+alert(value)
+sessionStorage.setItem("doctor",value)
 //console.log(formValue)
 }
 function validate(obj){
@@ -222,19 +264,20 @@ function validate(obj){
       </Select>
       <Text color={"red"} >{error.department}</Text>
     </FormControl> */}
-    <FormControl>
+    {/* <FormControl>
       <FormLabel>Select Doctor </FormLabel>
-      <Select   name='doctor' onChange={handleChange}  >
-        {doctorSelected?<option>{JSON.parse(sessionStorage.getItem("doctor")).name}</option>:<option>select a doctor</option>}
+      <Select   name='doctor' onChange={handleChangeDoctors}  >
+        {doctorSelected?<option value={sessionStorage.getItem("doctor")} >{JSON.parse(sessionStorage.getItem("doctor")).name}</option>:<option>select a doctor</option>}
         
         {
           doctors1.map((item,i)=>{
-            return <option>{item.name}</option>
+            return <option value={JSON.stringify(item)} >{item.name}</option>
           })
         }
       </Select>
       <Text color={"red"} >{error.doctor}</Text>
-    </FormControl>
+    </FormControl> */}
+    {doctorSelected?<></>:<Button   >Select a Doctor</Button>}
     <FormControl>
       
       <Textarea name='message' onChange={handleChange} placeholder='tell us more about your condition ' />
@@ -244,6 +287,13 @@ function validate(obj){
     </VStack>
     
   )
+}
+
+
+function Option({doctor}){
+   return (
+    <option>{doctor.name}</option>
+   )
 }
 
 export default AppointmentForm
