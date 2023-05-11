@@ -24,15 +24,18 @@ app.use("/admin", admin);
 app.use("/adminLogin", Admin);
 app.use("/doc", doc);
 
-seq.sync().then(() => {
-    app.listen(process.env.port, () => {
-        console.log(`Server is running on http://localhost:${process.env.port}`);
+// seq.sync().then(() => {
+//     app.listen(process.env.port, () => {
+//         console.log(`Server is running on http://localhost:${process.env.port}`);
 
-    })
+//     })
+// })
+
+
+app.listen(process.env.port, () => {
+    console.log(`Server is running on http://localhost:${process.env.port}`);
+
 })
-
-
-
 
 /* const express = require("express");
 const sequelize = require("sequelize");

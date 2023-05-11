@@ -112,6 +112,7 @@ if(isSubmit && Object.keys(error).length==0){
     description:formValue.message
 
   }
+  // console.log("data",data);
 
  
   
@@ -148,7 +149,7 @@ else{
 
 function pushToBackend(data){
  
-  alert("posting started")
+  // alert("posting started")
   fetch(`${baseUrl}/ap/slotbook/?role=pateint`, {
     method: 'POST',
     body: JSON.stringify(data),
@@ -160,9 +161,9 @@ function pushToBackend(data){
     .then((response) => response.json())
     .then((json) => {
       
-       //console.log(json)
+      //  console.log(json,"json")
        
-       //alert(json.msg)
+      //  alert(json.msg)
        swal.fire(json.msg)
       
     

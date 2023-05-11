@@ -371,6 +371,7 @@ sessionStorage.removeItem("role")
 sessionStorage.removeItem("token")
 
 alert("logout successfull")
+window.location.href="/login";
 
 
 

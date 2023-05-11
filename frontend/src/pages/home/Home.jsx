@@ -24,7 +24,7 @@ useEffect(()=>{
       
       // console.log(json.datadoctor)
       setDoctors(json.datadoctor)
-      console.log(doctors1)
+      // console.log(json.data,"doctors")
     });
    
 

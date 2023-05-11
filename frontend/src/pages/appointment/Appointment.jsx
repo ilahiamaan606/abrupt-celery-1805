@@ -32,7 +32,7 @@ function Appointment() {
     <Header/>
     <VStack   px={"50px"}>
   
-    <Stack flexWrap={"wrap"} className='appointmentContainer' w={"100%"} mx={0} flexDirection={"row"} px={"0px"}  align={"center"} justify={"space-between"}  >
+    <Stack  flexWrap={"wrap"} className='appointmentContainer' w={"100%"} mx={0} flexDirection={"row"} px={"0px"}  align={"center"} justify={"space-between"}  >
     <AppointmentForm/>
      
       {sessionStorage.getItem("doctor")?<DoctorSelected  />:<DoctorNotSelected className="onlyForDesktop" />} 

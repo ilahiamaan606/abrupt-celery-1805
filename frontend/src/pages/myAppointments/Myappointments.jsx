@@ -30,7 +30,7 @@ useEffect(()=>{
       .then((response) => response.json())
       .then((json) => {
         
-        // console.log(json.datadoctor)
+        // console.log(json.data)
         setAppointments(json.data)
         
       });
@@ -160,7 +160,7 @@ function fetchandUpdateAppointmentsData(){
       
       
       //alert(JSON.stringify(json))
-      
+      console.log(JSON.stringify(json));
       alert(`${json.msg} for appointment with id ${json.data[0].id}`)
       
       fetchandUpdateAppointmentsData()
