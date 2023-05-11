@@ -62,7 +62,7 @@ function Signup() {
     .then((res)=>res.json())
     .then((res)=>{console.log(res);
     alert(res);
-    if(res=="Signup Succesfull"){
+    if(res=="signup Successfully"){
       window.location.href="/login";
     }
     setName("");
@@ -85,7 +85,8 @@ function Signup() {
     .then((res)=>res.json())
     .then((res)=>{console.log(res);
     alert(res);
-    if(res=="Signup Succesfull"){
+    console.log(res);
+    if(res=="Signup Succesfully"){
       window.location.href="/login";
     }
     setName("");

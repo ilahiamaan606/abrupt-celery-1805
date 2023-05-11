@@ -11,7 +11,7 @@ import Staffs from "./pages/staffs/Staffs";
 import About from "./pages/About/About";
 
 import Myappointments from "./pages/myAppointments/Myappointments";
-import Adminlogin from "./pages/admin/adminlogin";
+import Adminlogin from "./pages/admin/Adminlogin";
 import AdminDashPage from "./pages/admin/AdminDashPage";
 
 function App() {
