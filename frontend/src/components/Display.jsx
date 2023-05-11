@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Display = () => {
-    fetch(`http://localhost:4500/doctor`).then((res) => res.json())
+    fetch(`https://shy-jade-giraffe.cyclic.app/doctor`).then((res) => res.json())
         return(
             <div></div>
         )

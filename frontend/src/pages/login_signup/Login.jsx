@@ -36,7 +36,7 @@ function Login() {
     else {
       link = 'users'
     }
-    fetch(`http://localhost:4500/${link}/login`,{
+    fetch(`https://shy-jade-giraffe.cyclic.app/${link}/login`,{
         method:"POST",
        headers:{
         'Content-type':'Application/json'

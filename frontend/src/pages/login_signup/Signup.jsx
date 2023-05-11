@@ -51,7 +51,7 @@ function Signup() {
         console.log(obj);
         obj.description=description;
         obj.department = department;
-        fetch("http://localhost:4500/doc/signup",{
+        fetch("https://shy-jade-giraffe.cyclic.app/doc/signup",{
         method:"POST",
        headers:{
         'Content-type':'Application/json'
@@ -74,7 +74,7 @@ function Signup() {
     }
     else if(role=="Patient"){
         console.log(obj)
-        fetch("http://localhost:4500/users/signup",{
+        fetch("https://shy-jade-giraffe.cyclic.app/users/signup",{
         method:"POST",
        headers:{
         'Content-type':'Application/json'
@@ -111,7 +111,7 @@ function Signup() {
     obj.otp = bag;
     obj.email = email;
     setFlag(true)
-    let response = await fetch("http://localhost:4500/users/mail_verify",{
+    let response = await fetch("https://shy-jade-giraffe.cyclic.app/users/mail_verify",{
         method:"POST",
        headers:{
         'Content-type':'Application/json'

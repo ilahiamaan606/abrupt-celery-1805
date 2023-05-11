@@ -20,7 +20,7 @@ function Adminlogin() {
     obj.username = email;
     obj.pass = password;
     
-    fetch(`http://localhost:4500/adminLogin`,{
+    fetch(`https://shy-jade-giraffe.cyclic.app/adminLogin`,{
         method:"POST",
        headers:{
         'Content-type':'Application/json'
@@ -33,7 +33,7 @@ function Adminlogin() {
       if(res.status==200){
         // alert(res.message);
         swal.fire(res.message)
-        window.location.href = "http://localhost:3000/adminhome";}
+        window.location.href = "/adminhome";}
       else{
         console.log(res.status)
         swal.fire("you are not authorized")

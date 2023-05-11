@@ -8,7 +8,7 @@ const AdminDashMain = ({ type }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:4500/admin/${type}`);
+                const response = await fetch(`https://shy-jade-giraffe.cyclic.app/admin/${type}`);
                 const data = await response.json();
                 console.log(data.data)
                 setData(data.data);
@@ -23,7 +23,7 @@ const AdminDashMain = ({ type }) => {
     const dImages = ["https://img.freepik.com/premium-vector/doctor-profile-with-medical-service-icon_617655-48.jpg?w=2000", "https://www.sketchappsources.com/resources/source-image/doctor-illustration-hamamzai.png", "https://www.browardhealth.org/-/media/bh_doctor_images/631299.jpg", "https://app.doctornow.hk/wp-content/uploads/Doctor-pana-1.png", "https://static.vecteezy.com/system/resources/thumbnails/002/896/807/small/female-doctor-using-her-digital-tablet-free-vector.jpg", "https://static.vecteezy.com/system/resources/previews/006/042/381/original/female-doctor-with-stethoscope-free-vector.jpg", "https://thumbs.dreamstime.com/z/female-doctor-vector-illustration-family-flat-cartoon-style-design-186907994.jpg"]
     const handleDelete = async (id, delType) => {
         try {
-            const res = await fetch(`http://localhost:4500/admin/${delType==="doctor" ? "Doctor_delete" : "Patient_delete"}/${id}`, {
+            const res = await fetch(`https://shy-jade-giraffe.cyclic.app/admin/${delType==="doctor" ? "Doctor_delete" : "Patient_delete"}/${id}`, {
                 method: 'DELETE',
             })
             const data = await res.json();

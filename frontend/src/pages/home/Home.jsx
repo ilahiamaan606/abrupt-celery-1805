@@ -5,7 +5,7 @@ import  Card  from '../../components/Card'
 import {Flex, Heading, VStack,Button, useFormControlStyles} from "@chakra-ui/react"
 import Footer from '../footer/Footer'
 import swal from "sweetalert2"
-let baseUrl = "http://localhost:4500";
+let baseUrl = "https://shy-jade-giraffe.cyclic.app";
 function Home() {
 if(!sessionStorage.getItem("role")){window.location.href="/login"}
 //fetching doctors data
