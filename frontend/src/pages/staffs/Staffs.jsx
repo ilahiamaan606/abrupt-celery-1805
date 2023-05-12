@@ -12,7 +12,7 @@ let [doctors1,setDoctors]=useState([]);
 useEffect(()=>{
 
 
-  fetch('https://shy-jade-giraffe.cyclic.app/ap/doctor/?role=pateint', {
+  fetch('https://hospital-appointment-booking-system.onrender.com/ap/doctor/?role=pateint', {
     method: 'GET',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',

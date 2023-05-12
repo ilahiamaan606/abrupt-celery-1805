@@ -51,7 +51,7 @@ function Signup() {
         console.log(obj);
         obj.description=description;
         obj.department = department;
-        fetch("https://shy-jade-giraffe.cyclic.app/doc/signup",{
+        fetch("https://hospital-appointment-booking-system.onrender.com/doc/signup",{
         method:"POST",
        headers:{
         'Content-type':'Application/json'
@@ -74,7 +74,7 @@ function Signup() {
     }
     else if(role=="Patient"){
         console.log(obj)
-        fetch("https://shy-jade-giraffe.cyclic.app/users/signup",{
+        fetch("https://hospital-appointment-booking-system.onrender.com/users/signup",{
         method:"POST",
        headers:{
         'Content-type':'Application/json'
@@ -111,7 +111,7 @@ function Signup() {
     obj.otp = bag;
     obj.email = email;
     setFlag(true)
-    let response = await fetch("https://shy-jade-giraffe.cyclic.app/users/mail_verify",{
+    let response = await fetch("https://hospital-appointment-booking-system.onrender.com/users/mail_verify",{
         method:"POST",
        headers:{
         'Content-type':'Application/json'

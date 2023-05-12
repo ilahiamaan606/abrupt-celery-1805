@@ -20,7 +20,7 @@ function Adminlogin() {
     obj.username = email;
     obj.pass = password;
     
-    fetch(`https://shy-jade-giraffe.cyclic.app/adminLogin`,{
+    fetch(`https://hospital-appointment-booking-system.onrender.com/adminLogin`,{
         method:"POST",
        headers:{
         'Content-type':'Application/json'

@@ -36,7 +36,7 @@ function Login() {
     else {
       link = 'users'
     }
-    fetch(`https://shy-jade-giraffe.cyclic.app/${link}/login`,{
+    fetch(`https://hospital-appointment-booking-system.onrender.com/${link}/login`,{
         method:"POST",
        headers:{
         'Content-type':'Application/json'
