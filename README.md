@@ -64,7 +64,7 @@ To run this project, you will need to add the following environment variables to
 ![image](https://raw.githubusercontent.com/ilahiamaan606/abrupt-celery-1805/main/frontend/src/assets/images/System%20Architecture.png)
 
 
-## ER Diagram
+<!-- ## ER Diagram -->
 <!-- ![drawSQL-lifecare-export-2023-04-03](https://user-images.githubusercontent.com/112754547/229438041-993e6356-22cd-49b0-8905-6867cd4f36e9.png) -->
 
 
